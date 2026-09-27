@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import {
-  Bell,
   Car,
   ChevronRight,
   Clock3,
   FileText,
   HelpCircle,
   MapPin,
-  Menu,
   Navigation,
   Power,
   Star,
@@ -17,6 +15,7 @@ import {
   Wallet,
   X,
   Check,
+  ShieldCheck,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -26,8 +25,8 @@ export default function DriverDashboard() {
     {
       id: 1,
       name: "Rahul Kumar",
-      pickup: "Koramangala",
-      destination: "Indiranagar",
+      pickup: "Koramangala 5th Block",
+      destination: "Indiranagar 100ft Road",
       distance: "4.2 km",
       fare: "₹185",
       time: "2 min ago",
@@ -35,8 +34,8 @@ export default function DriverDashboard() {
     {
       id: 2,
       name: "Priya Sharma",
-      pickup: "HSR Layout",
-      destination: "Electronic City",
+      pickup: "HSR Layout Sector 1",
+      destination: "Electronic City Phase 1",
       distance: "8.5 km",
       fare: "₹320",
       time: "5 min ago",
@@ -58,229 +57,206 @@ export default function DriverDashboard() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-2xl font-extrabold tracking-tight">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-
-          <div className="flex items-center gap-3">
-            <button className="relative rounded-xl p-2 text-slate-600 hover:bg-slate-100">
-              <Bell size={20} />
-              <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500" />
-            </button>
-
-            <div className="hidden items-center gap-3 border-l border-slate-200 pl-4 sm:flex">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
-                AS
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Aarav Singh
-                </p>
-                <p className="text-xs text-slate-500">Driver</p>
-              </div>
-            </div>
-
-            <button className="rounded-xl p-2 text-slate-600 sm:hidden">
-              <Menu size={21} />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Welcome + Online Status */}
-        <section className="mb-6 flex flex-col gap-4 rounded-2xl bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-sm text-slate-500">Welcome back</p>
-            <h1 className="mt-1 text-2xl font-bold text-slate-950">
-              Aarav Singh 👋
+    <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-7xl space-y-8">
+        
+        {/* Driver Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000] inline-block">
+              Driver Command Center
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-[#3D4852]">
+              Welcome back, Aarav Singh 👋
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
-              Manage your rides and earnings from here.
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280] max-w-2xl">
+              Manage live ride requests, navigate active routes, and track your daily earnings in real-time.
             </p>
           </div>
 
           <button
             onClick={() => setOnline(!online)}
-            className={`flex items-center gap-3 self-start rounded-full px-4 py-2.5 text-sm font-semibold transition ${
+            className={`px-6 py-4 rounded-2xl text-xs font-bold flex items-center gap-3 transition-all ${
               online
-                ? "bg-green-100 text-green-700"
-                : "bg-slate-100 text-slate-600"
+                ? "neu-inset text-[#000000] border border-black/10"
+                : "neu-btn text-[#6B7280]"
             }`}
           >
             <span
               className={`h-3 w-3 rounded-full ${
-                online ? "bg-green-500" : "bg-slate-400"
+                online ? "bg-[#000000] animate-pulse" : "bg-[#6B7280]"
               }`}
             />
-            {online ? "You're Online" : "You're Offline"}
-            <Power size={17} />
+            <span>{online ? "Status: ONLINE" : "Status: OFFLINE"}</span>
+            <Power size={16} />
           </button>
-        </section>
+        </div>
 
-        {/* Notification */}
+        {/* Notification Alert */}
         {message && (
-          <div className="mb-5 flex items-center gap-3 rounded-xl bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
+          <div className="neu-inset p-4 rounded-2xl flex items-center gap-3 text-xs font-bold text-[#000000]">
             <Check size={18} />
             {message}
           </div>
         )}
 
-        {/* Stats */}
-        <section className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {/* Key Stats Grid */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
-            icon={<Wallet size={21} />}
+            icon={<Wallet size={20} />}
             label="Today's Earnings"
             value="₹1,850"
-            change="+12.5%"
+            change="+12.5% vs yesterday"
           />
 
           <StatCard
-            icon={<Car size={21} />}
+            icon={<Car size={20} />}
             label="Completed Rides"
-            value="12"
+            value="12 Trips"
             change="Today"
           />
 
           <StatCard
-            icon={<Star size={21} />}
-            label="Rating"
-            value="4.8"
-            change="Excellent"
+            icon={<Star size={20} />}
+            label="Driver Rating"
+            value="4.8 ★"
+            change="500+ Trips Rated"
           />
 
           <StatCard
-            icon={<Clock3 size={21} />}
+            icon={<Clock3 size={20} />}
             label="Pending Payout"
             value="₹4,250"
-            change="This week"
+            change="Settlement Friday"
           />
         </section>
 
-        {/* Main Grid */}
-        <div className="grid gap-6 lg:grid-cols-3">
-          {/* Left */}
-          <div className="space-y-6 lg:col-span-2">
-            {/* Active Ride */}
-            <section className="overflow-hidden rounded-2xl bg-white shadow-sm">
-              <div className="flex items-center justify-between border-b border-slate-100 p-5">
+        {/* Main Content Dashboard Grid */}
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Left Column: Active Navigation & Live Requests */}
+          <div className="space-y-8 lg:col-span-2">
+            
+            {/* Active Ride Navigation Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-950">
-                    Active Ride
+                  <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000] uppercase">
+                    Live Trip Status
+                  </span>
+                  <h2 className="font-display text-xl font-bold text-[#3D4852] mt-2">
+                    Active Ride Navigation
                   </h2>
-                  <p className="text-sm text-slate-500">
-                    Your current trip
-                  </p>
                 </div>
 
-                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">
+                <span className="neu-inset-sm px-3 py-1 rounded-xl text-xs font-extrabold text-[#000000]">
                   IN PROGRESS
                 </span>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="relative h-52 overflow-hidden bg-blue-50">
-                <div className="absolute inset-0 opacity-40">
-                  <div className="absolute left-0 top-16 h-px w-full rotate-6 bg-slate-400" />
-                  <div className="absolute left-0 top-32 h-px w-full -rotate-12 bg-slate-400" />
-                  <div className="absolute left-20 top-0 h-full w-px rotate-12 bg-slate-400" />
-                  <div className="absolute right-24 top-0 h-full w-px -rotate-12 bg-slate-400" />
+              {/* Map Placeholder Graphic */}
+              <div className="neu-inset-deep rounded-2xl h-52 relative overflow-hidden flex items-center justify-center p-4">
+                <div className="absolute inset-0 opacity-15">
+                  <div className="absolute left-0 top-16 h-px w-full rotate-6 bg-[#000000]" />
+                  <div className="absolute left-0 top-32 h-px w-full -rotate-12 bg-[#000000]" />
+                  <div className="absolute left-20 top-0 h-full w-px rotate-12 bg-[#000000]" />
+                  <div className="absolute right-24 top-0 h-full w-px -rotate-12 bg-[#000000]" />
                 </div>
 
-                <div className="absolute left-[25%] top-[35%] flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg">
-                  <Navigation size={19} />
+                <div className="absolute left-[30%] top-[40%] flex h-11 w-11 items-center justify-center rounded-2xl neu-extruded text-[#000000]">
+                  <Navigation size={20} />
                 </div>
 
-                <div className="absolute right-[25%] bottom-[25%] flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white shadow-lg">
+                <div className="absolute right-[30%] bottom-[30%] flex h-11 w-11 items-center justify-center rounded-2xl neu-inset-deep text-[#000000]">
                   <MapPin size={20} />
                 </div>
 
-                <div className="absolute bottom-4 left-4 rounded-xl bg-white px-4 py-2 text-xs font-semibold shadow-md">
-                  3.8 km remaining
+                <div className="neu-extruded bg-[#E0E5EC] text-[#3D4852] text-xs font-bold px-4 py-2 rounded-xl absolute bottom-3 left-3 shadow-md border border-black/5">
+                  3.8 km remaining (Est. 9 mins)
                 </div>
               </div>
 
-              <div className="p-5">
+              {/* Ride Route Details */}
+              <div className="neu-inset-deep p-6 rounded-2xl space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="flex gap-3">
-                    <div className="mt-1 h-3 w-3 rounded-full bg-blue-600" />
+                  <div className="flex items-start gap-3">
+                    <div className="neu-extruded p-2 rounded-xl text-[#000000] mt-0.5">
+                      <MapPin size={16} />
+                    </div>
                     <div>
-                      <p className="text-xs text-slate-500">Pickup</p>
-                      <p className="font-semibold text-slate-900">
-                        HSR Layout
-                      </p>
+                      <p className="text-[11px] font-bold uppercase text-[#6B7280]">Pickup Location</p>
+                      <p className="font-bold text-sm text-[#3D4852]">HSR Layout Sector 1</p>
                     </div>
                   </div>
 
-                  <div className="flex gap-3">
-                    <div className="mt-1 h-3 w-3 rounded-full bg-red-500" />
+                  <div className="flex items-start gap-3">
+                    <div className="neu-inset-deep p-2 rounded-xl text-[#000000] mt-0.5">
+                      <Navigation size={16} />
+                    </div>
                     <div>
-                      <p className="text-xs text-slate-500">Destination</p>
-                      <p className="font-semibold text-slate-900">
-                        Koramangala
-                      </p>
+                      <p className="text-[11px] font-bold uppercase text-[#6B7280]">Destination</p>
+                      <p className="font-bold text-sm text-[#3D4852]">Koramangala 5th Block</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <button className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700">
-                    <Navigation size={18} />
-                    Navigate
-                  </button>
-
-                  <Link
-  href="/driver/ride"
-  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-center font-semibold text-slate-700 hover:bg-slate-50"
->
-  View Details
-</Link>
+                <div className="pt-3 border-t border-black/5 flex items-center justify-between">
+                  <span className="text-xs text-[#6B7280] font-semibold">Passenger: <strong className="text-[#3D4852]">Vikram Seth</strong></span>
+                  <span className="text-xs text-[#6B7280] font-semibold">Fare: <strong className="text-[#3D4852]">₹240</strong></span>
                 </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="flex-1 neu-btn neu-btn-primary py-3.5 px-6 rounded-2xl text-xs font-bold inline-flex items-center justify-center gap-2">
+                  <Navigation size={18} />
+                  <span>Start Navigation</span>
+                </button>
+
+                <Link
+                  href="/driver/ride"
+                  className="flex-1 neu-btn py-3.5 px-6 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center justify-center gap-2 text-center"
+                >
+                  <span>View Trip Details</span>
+                  <ChevronRight size={16} />
+                </Link>
               </div>
             </section>
 
-            {/* Ride Requests */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
-              <div className="mb-5 flex items-center justify-between">
+            {/* Ride Requests Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-lg font-bold text-slate-950">
-                    New Ride Requests
+                  <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000] uppercase">
+                    Dispatch Queue
+                  </span>
+                  <h2 className="font-display text-xl font-bold text-[#3D4852] mt-2">
+                    Nearby Ride Requests
                   </h2>
-                  <p className="text-sm text-slate-500">
-                    Nearby bookings waiting for you
-                  </p>
                 </div>
 
-                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">
-                  {requests.length} New
+                <span className="neu-inset-sm px-3 py-1 rounded-full text-xs font-extrabold text-[#000000]">
+                  {requests.length} Pending
                 </span>
               </div>
 
               <div className="space-y-4">
                 {requests.length === 0 ? (
-                  <div className="rounded-xl bg-slate-50 py-10 text-center">
-                    <Car className="mx-auto mb-3 text-slate-400" size={32} />
-                    <p className="font-semibold text-slate-700">
-                      No new requests
-                    </p>
-                    <p className="mt-1 text-sm text-slate-500">
-                      New ride requests will appear here.
-                    </p>
+                  <div className="neu-inset-deep rounded-2xl p-10 text-center space-y-3">
+                    <div className="neu-extruded inline-flex p-4 rounded-2xl text-[#000000]">
+                      <Car size={32} />
+                    </div>
+                    <p className="font-bold text-[#3D4852]">No Pending Requests</p>
+                    <p className="text-xs text-[#6B7280]">New rider requests in your dispatch radius will show up here.</p>
                   </div>
                 ) : (
                   requests.map((ride) => (
                     <div
                       key={ride.id}
-                      className="rounded-xl border border-slate-200 p-4"
+                      className="neu-inset-deep rounded-2xl p-5 space-y-4"
                     >
-                      <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
+                          <div className="neu-extruded h-12 w-12 rounded-2xl flex items-center justify-center font-extrabold text-sm text-[#000000]">
                             {ride.name
                               .split(" ")
                               .map((n) => n[0])
@@ -288,70 +264,54 @@ export default function DriverDashboard() {
                           </div>
 
                           <div>
-                            <p className="font-semibold text-slate-900">
+                            <h3 className="font-bold text-sm text-[#3D4852]">
                               {ride.name}
-                            </p>
-                            <p className="text-xs text-slate-500">
-                              {ride.time}
+                            </h3>
+                            <p className="text-xs text-[#6B7280]">
+                              {ride.time} • Approx {ride.distance}
                             </p>
                           </div>
                         </div>
 
-                        <p className="text-lg font-bold text-slate-900">
+                        <span className="text-xl font-extrabold text-[#3D4852]">
                           {ride.fare}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 rounded-xl bg-slate-50 p-3">
-                        <div className="flex gap-3">
-                          <div className="flex flex-col items-center pt-1">
-                            <span className="h-2.5 w-2.5 rounded-full bg-blue-600" />
-                            <span className="h-8 border-l border-dashed border-slate-300" />
-                            <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                          </div>
-
-                          <div className="space-y-4 text-sm">
-                            <div>
-                              <p className="text-xs text-slate-500">Pickup</p>
-                              <p className="font-medium text-slate-800">
-                                {ride.pickup}
-                              </p>
-                            </div>
-
-                            <div>
-                              <p className="text-xs text-slate-500">
-                                Destination
-                              </p>
-                              <p className="font-medium text-slate-800">
-                                {ride.destination}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="mt-3 flex items-center justify-between">
-                        <span className="text-xs text-slate-500">
-                          Approx. {ride.distance}
                         </span>
+                      </div>
 
-                        <div className="flex gap-2">
-                          <button
-                            onClick={() => declineRide(ride.id)}
-                            className="flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50"
-                          >
-                            <X size={15} />
-                            Decline
-                          </button>
-
-                          <button
-                            onClick={() => acceptRide(ride.id)}
-                            className="flex items-center gap-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-                          >
-                            <Check size={15} />
-                            Accept
-                          </button>
+                      <div className="neu-inset-sm p-4 rounded-xl space-y-2">
+                        <div className="flex items-center gap-3">
+                          <MapPin size={16} className="text-[#000000] shrink-0" />
+                          <div>
+                            <p className="text-[10px] font-bold uppercase text-[#6B7280]">Pickup</p>
+                            <p className="text-xs font-semibold text-[#3D4852]">{ride.pickup}</p>
+                          </div>
                         </div>
+
+                        <div className="flex items-center gap-3 pt-2 border-t border-black/5">
+                          <Navigation size={16} className="text-[#000000] shrink-0" />
+                          <div>
+                            <p className="text-[10px] font-bold uppercase text-[#6B7280]">Destination</p>
+                            <p className="text-xs font-semibold text-[#3D4852]">{ride.destination}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-end gap-3 pt-1">
+                        <button
+                          onClick={() => declineRide(ride.id)}
+                          className="neu-btn px-5 py-2.5 rounded-xl text-xs font-bold text-[#6B7280] hover:text-[#000000] inline-flex items-center gap-1.5"
+                        >
+                          <X size={15} />
+                          <span>Decline</span>
+                        </button>
+
+                        <button
+                          onClick={() => acceptRide(ride.id)}
+                          className="neu-btn neu-btn-primary px-6 py-2.5 rounded-xl text-xs font-bold inline-flex items-center gap-1.5"
+                        >
+                          <Check size={15} />
+                          <span>Accept Ride</span>
+                        </button>
                       </div>
                     </div>
                   ))
@@ -360,86 +320,96 @@ export default function DriverDashboard() {
             </section>
           </div>
 
-          {/* Right Sidebar */}
-          <aside className="space-y-6">
-            {/* Vehicle */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
-              <div className="mb-4 flex items-center justify-between">
-                <h2 className="font-bold text-slate-950">My Vehicle</h2>
-                <Car size={20} className="text-blue-600" />
+          {/* Right Column: Vehicle Info, Quick Actions & Safety */}
+          <aside className="space-y-8">
+            
+            {/* Vehicle Info Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="font-bold text-lg text-[#3D4852]">My Assigned Vehicle</h2>
+                <div className="neu-inset-deep p-2 rounded-xl text-[#000000]">
+                  <Car size={18} />
+                </div>
               </div>
 
-              <div className="rounded-xl bg-slate-50 p-4">
-                <p className="text-lg font-bold text-slate-900">
+              <div className="neu-inset-deep p-5 rounded-2xl space-y-3">
+                <p className="text-base font-extrabold text-[#3D4852]">
                   Maruti Suzuki Dzire
                 </p>
-                <p className="mt-1 text-sm text-slate-500">White Sedan</p>
+                <p className="text-xs text-[#6B7280]">White Sedan • AC Premier</p>
 
-                <div className="mt-4 flex items-center justify-between">
-                  <span className="rounded-lg bg-white px-3 py-2 text-sm font-bold tracking-wider text-slate-800">
+                <div className="pt-2 flex items-center justify-between">
+                  <span className="neu-extruded px-3 py-1 rounded-xl text-xs font-mono font-bold text-[#000000]">
                     KA 01 AB 1234
                   </span>
 
-                  <span className="text-xs font-semibold text-green-600">
-                    Active
+                  <span className="neu-inset-sm px-3 py-1 rounded-full text-[11px] font-bold text-[#000000]">
+                    Active Fleet
                   </span>
                 </div>
               </div>
             </section>
 
-            {/* Quick Actions */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
-              <h2 className="mb-3 font-bold text-slate-950">
-                Quick Actions
+            {/* Quick Actions Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
+              <h2 className="font-bold text-lg text-[#3D4852]">
+                Driver Quick Menu
               </h2>
 
-              <div className="divide-y divide-slate-100">
+              <div className="space-y-3">
                 <QuickLink
                   href="/driver/earnings"
-                  icon={<Wallet size={19} />}
+                  icon={<Wallet size={18} />}
                   title="Earnings & Payouts"
                 />
 
                 <QuickLink
                   href="/driver/rides"
-                  icon={<Car size={19} />}
+                  icon={<Car size={18} />}
                   title="Ride History"
                 />
 
                 <QuickLink
                   href="/driver/vehicle"
-                  icon={<Car size={19} />}
-                  title="Vehicle Details"
+                  icon={<Car size={18} />}
+                  title="Vehicle & Maintenance"
                 />
 
                 <QuickLink
                   href="/driver/documents"
-                  icon={<FileText size={19} />}
+                  icon={<FileText size={18} />}
                   title="Documents & KYC"
                 />
 
                 <QuickLink
                   href="/driver/profile"
-                  icon={<User size={19} />}
-                  title="My Profile"
+                  icon={<User size={18} />}
+                  title="Driver Profile"
                 />
 
                 <QuickLink
                   href="/driver/support"
-                  icon={<HelpCircle size={19} />}
-                  title="Help & Support"
+                  icon={<HelpCircle size={18} />}
+                  title="24/7 Driver Support"
                 />
               </div>
             </section>
 
-            {/* Safety */}
-            <section className="rounded-2xl bg-slate-950 p-5 text-white">
-              <h2 className="font-bold">Safety First</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
-                Follow traffic rules and keep your vehicle documents updated.
+            {/* Safety Banner */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+                  <ShieldCheck size={22} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-[#3D4852]">Driver Safety Guidelines</h3>
+                  <p className="text-[11px] text-[#6B7280]">Safety First on Every Trip</p>
+                </div>
+              </div>
+              <p className="text-xs text-[#6B7280] leading-relaxed">
+                Adhere to speed limits, keep digital driving licenses current, and report emergency incidents immediately.
               </p>
-
-              <button className="mt-4 w-full rounded-xl bg-white py-3 text-sm font-semibold text-slate-900 hover:bg-slate-100">
+              <button className="neu-btn neu-btn-primary w-full py-3 rounded-2xl text-xs font-bold">
                 Safety Center
               </button>
             </section>
@@ -462,17 +432,19 @@ function StatCard({
   change: string;
 }) {
   return (
-    <div className="rounded-2xl bg-white p-4 shadow-sm">
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
       <div className="flex items-center justify-between">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+          {label}
+        </p>
+        <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
           {icon}
         </div>
-
-        <span className="text-xs font-semibold text-green-600">{change}</span>
       </div>
-
-      <p className="mt-4 text-sm text-slate-500">{label}</p>
-      <p className="mt-1 text-2xl font-bold text-slate-950">{value}</p>
+      <p className="text-2xl font-extrabold text-[#3D4852]">{value}</p>
+      <span className="neu-inset-sm px-2.5 py-0.5 rounded-full text-[11px] font-bold text-[#000000] inline-block">
+        {change}
+      </span>
     </div>
   );
 }
@@ -489,14 +461,13 @@ function QuickLink({
   return (
     <Link
       href={href}
-      className="flex items-center justify-between py-3.5 hover:text-blue-600"
+      className="neu-inset-sm hover:neu-btn w-full p-3.5 rounded-2xl flex items-center justify-between font-bold text-xs text-[#3D4852] transition-all"
     >
       <div className="flex items-center gap-3">
-        <span className="text-slate-500">{icon}</span>
-        <span className="text-sm font-medium text-slate-700">{title}</span>
+        <span className="text-[#000000]">{icon}</span>
+        <span className="font-bold text-[#3D4852]">{title}</span>
       </div>
-
-      <ChevronRight size={17} className="text-slate-400" />
+      <ChevronRight size={16} className="text-[#6B7280]" />
     </Link>
   );
 }

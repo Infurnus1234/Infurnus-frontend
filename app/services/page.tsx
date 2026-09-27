@@ -1,266 +1,133 @@
 import Link from "next/link";
+import Footer from "@/components/Footer";
+import Services from "@/components/Services";
 import {
-  ArrowRight,
   Car,
-  Package,
-  ShieldCheck,
   Clock,
-  MapPin,
-  CheckCircle2,
+  Package,
+  Ambulance,
+  Building2,
+  ShieldCheck,
+  ArrowRight,
+  Sparkles,
 } from "lucide-react";
 
-const services = [
-  {
-    title: "Passenger",
-    subtitle: "Everyday rides made simple",
-    description:
-      "Book a ride from your pickup location to your destination with transparent estimated fares.",
-    icon: Car,
-    color: "blue",
-    examples: ["Bike", "Auto", "Mini / Compact", "Sedan", "SUV"],
-    pricing: "Base Fare + Distance + Time + Waiting + Applicable Charges",
-  },
-  {
-    title: "Logistics",
-    subtitle: "Move goods with ease",
-    description:
-      "Book commercial vehicles for furniture, parcels, business goods and other transportation needs.",
-    icon: Package,
-    color: "green",
-    examples: [
-      "Mini Truck",
-      "Pickup",
-      "Tata Ace",
-      "Delivery Vehicle",
-      "Large Truck",
-    ],
-    pricing:
-      "Base Fare + Distance + Vehicle Type + Load + Waiting + Loading / Unloading",
-  },
-  {
-    title: "Service Vehicle",
-    subtitle: "Help when you need it",
-    description:
-      "Request specialized vehicles such as ambulances, towing vans, JCBs and recovery vehicles.",
-    icon: ShieldCheck,
-    color: "orange",
-    examples: [
-      "Ambulance",
-      "Towing Van",
-      "JCB",
-      "Recovery Vehicle",
-      "Roadside Assistance",
-    ],
-    pricing: "Trip Based Pricing",
-  },
-  {
-    title: "Premium Vehicle",
-    subtitle: "Travel in comfort",
-    description:
-      "Book premium SUVs and vehicles for personal travel, events, business use and hourly requirements.",
-    icon: Car,
-    color: "purple",
-    examples: ["Fortuner", "Thar", "Premium SUV", "Luxury Vehicles"],
-    pricing: "Vehicle × Hours",
-  },
-];
-
 export default function ServicesPage() {
+  const serviceCards = [
+    {
+      title: "City Rides & Auto",
+      badge: "Instant Mobility",
+      desc: "Fast, reliable daily commuting with cabs, bike taxis, and auto rickshaws at transparent non-surge fares.",
+      icon: Car,
+      link: "/customer/book?type=city",
+    },
+    {
+      title: "Hourly Chauffeur Rental",
+      badge: "Flexibility",
+      desc: "Hire a vehicle and driver for 2 to 24 hours with multi-stop flexibility and free fuel included.",
+      icon: Clock,
+      link: "/customer/rental",
+    },
+    {
+      title: "Logistics & Goods Cargo",
+      badge: "Heavy Freight",
+      desc: "From mini-trucks to 18-wheeler trailers. Live GPS tracking and proof of delivery for personal & enterprise cargo.",
+      icon: Package,
+      link: "/customer/logistics",
+    },
+    {
+      title: "Emergency & Recovery Fleet",
+      badge: "24/7 Priority",
+      desc: "Dedicated ambulance dispatch, breakdown towing, and heavy lifting cranes dispatched in under 15 minutes.",
+      icon: Ambulance,
+      link: "/customer/service",
+    },
+    {
+      title: "Enterprise Fleet Solutions",
+      badge: "B2B Logistics",
+      desc: "Dedicated logistics contracts, monthly vehicle leases, and API access for corporate transportation.",
+      icon: Building2,
+      link: "/business",
+    },
+    {
+      title: "VIP & Premium Travel",
+      badge: "Executive Class",
+      desc: "Luxury sedans, SUV escorts, and airport transfers with top-tier verified chauffeurs.",
+      icon: ShieldCheck,
+      link: "/customer/premium",
+    },
+  ];
+
   return (
-    <main className="min-h-screen bg-slate-50">
-
-      {/* HERO */}
-      <section className="bg-slate-950 px-4 py-20 text-white sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-
-          <p className="text-sm font-bold uppercase tracking-wider text-blue-400">
-            INFURNUS SERVICES
-          </p>
-
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-            One platform for every mobility need.
-          </h1>
-
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-            From everyday passenger rides to logistics, emergency service
-            vehicles and premium travel, Infurnus connects customers with
-            the right vehicle for every requirement.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/customer/book"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
-            >
-              Book a Ride
-              <ArrowRight size={18} />
-            </Link>
-
-            <Link
-              href="/provider/register"
-              className="rounded-xl border border-slate-600 px-5 py-3 font-semibold text-white hover:bg-slate-900"
-            >
-              Become a Provider
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES */}
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-
-          <div className="text-center">
-            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">
-              OUR SERVICES
-            </p>
-
-            <h2 className="mt-2 text-3xl font-bold text-slate-950">
-              Choose what you need
-            </h2>
-
-            <p className="mx-auto mt-3 max-w-2xl text-slate-500">
-              Select a service based on your transportation requirement.
+    <div className="min-h-screen bg-[#E0E5EC] flex flex-col justify-between">
+      <main className="py-16 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+        <div className="mx-auto max-w-7xl space-y-16">
+          
+          {/* Header */}
+          <div className="text-center space-y-4 max-w-3xl mx-auto">
+            <span className="inline-flex items-center gap-2 neu-inset-sm px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000]">
+              <Sparkles size={14} />
+              Infurnus Integrated Platform
+            </span>
+            <h1 className="font-display text-4xl sm:text-6xl font-extrabold text-[#3D4852] tracking-tight">
+              Our Fleet & Mobility Services
+            </h1>
+            <p className="font-sans text-base sm:text-lg text-[#6B7280] leading-relaxed">
+              Explore our comprehensive ecosystem built to power personal transit, parcel deliveries, hourly rentals, emergency medical care, and enterprise logistics.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-
-            {services.map((service) => {
+          {/* Detailed Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {serviceCards.map((service, idx) => {
               const Icon = service.icon;
-
               return (
                 <div
-                  key={service.title}
-                  className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  key={idx}
+                  className="neu-extruded neu-extruded-hover rounded-[36px] bg-[#E0E5EC] p-8 flex flex-col justify-between space-y-6 transition-all duration-300"
                 >
-                  <div className="flex items-start gap-4">
-
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                      <Icon size={28} />
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="neu-inset-deep p-4 rounded-2xl text-[#000000]">
+                        <Icon size={32} />
+                      </div>
+                      <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+                        {service.badge}
+                      </span>
                     </div>
 
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-950">
-                        {service.title}
-                      </h3>
+                    <h2 className="font-display text-2xl font-bold text-[#3D4852]">
+                      {service.title}
+                    </h2>
 
-                      <p className="mt-1 text-sm font-medium text-blue-600">
-                        {service.subtitle}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="mt-5 text-sm leading-6 text-slate-600">
-                    {service.description}
-                  </p>
-
-                  <div className="mt-5">
-                    <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                      Vehicle Types
-                    </p>
-
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {service.examples.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600"
-                        >
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="mt-5 rounded-xl bg-slate-50 p-4">
-                    <p className="text-xs font-semibold text-slate-400">
-                      PRICING MODEL
-                    </p>
-
-                    <p className="mt-1 text-sm font-semibold text-slate-800">
-                      {service.pricing}
+                    <p className="text-sm text-[#6B7280] leading-relaxed">
+                      {service.desc}
                     </p>
                   </div>
 
-                  <Link
-                    href="/customer/book"
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700"
-                  >
-                    Book this service
-                    <ArrowRight size={16} />
-                  </Link>
+                  <div className="pt-4 border-t border-black/5">
+                    <Link
+                      href={service.link}
+                      className="neu-btn neu-btn-primary w-full py-3.5 px-6 rounded-2xl text-xs font-bold flex items-center justify-center gap-2"
+                    >
+                      <span>Explore Service</span>
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
                 </div>
               );
             })}
-
           </div>
+
+          {/* Interactive Feature Component */}
+          <div className="neu-extruded rounded-[40px] bg-[#E0E5EC] p-8 sm:p-12">
+            <Services />
+          </div>
+
         </div>
-      </section>
+      </main>
 
-      {/* HOW IT WORKS */}
-      <section className="border-y border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-slate-950">
-              How Infurnus works
-            </h2>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-4">
-
-            {[
-              {
-                icon: MapPin,
-                title: "Enter Location",
-                text: "Add your pickup and destination.",
-              },
-              {
-                icon: Car,
-                title: "Choose Vehicle",
-                text: "Select the vehicle that fits your requirement.",
-              },
-              {
-                icon: Clock,
-                title: "Confirm Booking",
-                text: "Review the estimated fare and confirm.",
-              },
-              {
-                icon: CheckCircle2,
-                title: "Complete Trip",
-                text: "Track your trip and complete the payment.",
-              },
-            ].map((item, index) => {
-              const Icon = item.icon;
-
-              return (
-                <div
-                  key={item.title}
-                  className="rounded-2xl border border-slate-200 p-6 text-center"
-                >
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                    <Icon size={22} />
-                  </div>
-
-                  <div className="mt-4 text-xs font-bold text-blue-600">
-                    STEP {index + 1}
-                  </div>
-
-                  <h3 className="mt-1 font-bold text-slate-950">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-2 text-sm text-slate-500">
-                    {item.text}
-                  </p>
-                </div>
-              );
-            })}
-
-          </div>
-        </div>
-      </section>
-
-    </main>
+      <Footer />
+    </div>
   );
 }

@@ -42,91 +42,74 @@ export default function DriverProfilePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-5xl space-y-8">
+        
+        {/* Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000] inline-block">
+              Account Terminal
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-[#3D4852]">
+              Driver Profile & Settings
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280] max-w-2xl">
+              Update personal identity info, emergency contact preferences, and push notification settings.
+            </p>
+          </div>
+
           <Link
             href="/driver"
-            className="mr-4 rounded-xl p-2 text-slate-600 hover:bg-slate-100"
+            className="neu-btn px-6 py-3.5 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center gap-2 self-start sm:self-auto"
           >
-            <ArrowLeft size={21} />
+            <ArrowLeft size={16} />
+            <span>Dashboard</span>
           </Link>
-
-          <Link href="/" className="text-xl font-extrabold tracking-tight">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-
-          <span className="ml-auto text-sm font-semibold text-slate-600">
-            Profile & Settings
-          </span>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <div className="mb-6">
-          <p className="text-sm text-slate-500">Driver account</p>
-
-          <h1 className="mt-1 text-2xl font-bold text-slate-950">
-            Profile & Settings
-          </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            Manage your personal information and account preferences.
-          </p>
         </div>
 
-        {/* Success */}
         {saved && (
-          <div className="mb-5 flex items-center gap-3 rounded-xl bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
+          <div className="neu-inset p-4 rounded-2xl flex items-center gap-3 text-xs font-bold text-[#000000]">
             <Check size={18} />
-            Profile updated successfully.
+            Driver profile updated successfully.
           </div>
         )}
 
-        {/* Profile Card */}
-        <section className="rounded-2xl bg-white shadow-sm">
-          <div className="flex flex-col gap-5 border-b border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        {/* Profile Details Card */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-black/5">
             <div className="flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-xl font-bold text-blue-700">
+              <div className="neu-extruded h-16 w-16 rounded-2xl flex items-center justify-center font-extrabold text-xl text-[#000000]">
                 AS
               </div>
 
               <div>
-                <h2 className="text-xl font-bold text-slate-950">
+                <h2 className="font-display text-xl font-extrabold text-[#3D4852]">
                   {name}
                 </h2>
-
-                <div className="mt-1 flex items-center gap-2">
-                  <span className="rounded-full bg-green-100 px-2.5 py-1 text-xs font-bold text-green-700">
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="neu-inset-sm px-3 py-0.5 rounded-full text-[11px] font-bold text-[#000000]">
                     Verified Driver
                   </span>
-
-                  <span className="text-xs text-slate-500">
-                    Driver since 2026
-                  </span>
+                  <span className="text-xs text-[#6B7280]">Member since 2026</span>
                 </div>
               </div>
             </div>
 
             <button
               onClick={() => setEditing(!editing)}
-              className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+              className="neu-btn px-5 py-2.5 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center justify-center gap-2 self-start sm:self-auto"
             >
               {editing ? <X size={16} /> : <User size={16} />}
-              {editing ? "Cancel" : "Edit Profile"}
+              <span>{editing ? "Cancel" : "Edit Details"}</span>
             </button>
           </div>
 
-          {/* Personal Information */}
-          <div className="p-5 sm:p-6">
-            <h3 className="font-bold text-slate-950">
-              Personal Information
-            </h3>
+          {/* Input Fields Grid */}
+          <div className="space-y-6">
+            <h3 className="font-bold text-base text-[#3D4852]">Personal Credentials</h3>
 
-            <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               <ProfileField
                 icon={<User size={18} />}
                 label="Full Name"
@@ -137,7 +120,7 @@ export default function DriverProfilePage() {
 
               <ProfileField
                 icon={<Phone size={18} />}
-                label="Mobile Number"
+                label="Mobile Phone"
                 value={phone}
                 editing={editing}
                 onChange={setPhone}
@@ -153,7 +136,7 @@ export default function DriverProfilePage() {
 
               <ProfileField
                 icon={<MapPin size={18} />}
-                label="City"
+                label="Primary City"
                 value={city}
                 editing={editing}
                 onChange={setCity}
@@ -163,135 +146,85 @@ export default function DriverProfilePage() {
             {editing && (
               <button
                 onClick={saveProfile}
-                className="mt-6 flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
+                className="neu-btn neu-btn-primary px-8 py-3.5 rounded-2xl text-xs font-bold inline-flex items-center gap-2"
               >
-                <Save size={17} />
-                Save Changes
+                <Save size={16} />
+                <span>Save Profile Changes</span>
               </button>
             )}
           </div>
         </section>
 
-        {/* Account Status */}
-        <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm sm:p-6">
-          <h2 className="font-bold text-slate-950">
-            Account Status
-          </h2>
-
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            <StatusCard
-              icon={<ShieldCheck size={20} />}
-              title="KYC"
-              value="Verified"
-            />
-
-            <StatusCard
-              icon={<Car size={20} />}
-              title="Vehicle"
-              value="Verified"
-            />
-
-            <StatusCard
-              icon={<Check size={20} />}
-              title="Account"
-              value="Active"
-            />
+        {/* Verification Badges Card */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-4">
+          <h2 className="font-bold text-base text-[#3D4852]">Account Audit Badges</h2>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <StatusCard icon={<ShieldCheck size={18} />} title="KYC Compliance" value="Verified" />
+            <StatusCard icon={<Car size={18} />} title="Vehicle Specs" value="Verified" />
+            <StatusCard icon={<Check size={18} />} title="Dispatch Status" value="Active" />
           </div>
         </section>
 
-        {/* Settings */}
-        <section className="mt-6 rounded-2xl bg-white shadow-sm">
-          <div className="border-b border-slate-100 p-5 sm:p-6">
-            <h2 className="font-bold text-slate-950">
-              Preferences
-            </h2>
-
-            <p className="mt-1 text-sm text-slate-500">
-              Choose how Infurnus communicates with you.
-            </p>
-          </div>
-
-          <div className="divide-y divide-slate-100">
+        {/* Preferences Toggles Card */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+          <h2 className="font-bold text-base text-[#3D4852]">Notification Preferences</h2>
+          <div className="space-y-4">
             <SettingRow
-              icon={<Bell size={19} />}
+              icon={<Bell size={18} />}
               title="Push Notifications"
-              description="Receive important account and ride notifications."
+              description="Receive instant app alerts for trip updates and earnings payouts."
               enabled={notifications}
               onToggle={() => setNotifications(!notifications)}
             />
 
             <SettingRow
-              icon={<Car size={19} />}
-              title="New Ride Alerts"
-              description="Get notified when nearby ride requests are available."
+              icon={<Car size={18} />}
+              title="New Dispatch Alerts"
+              description="Sound loud alerts when new ride requests appear in your radius."
               enabled={rideAlerts}
               onToggle={() => setRideAlerts(!rideAlerts)}
             />
           </div>
         </section>
 
-        {/* Account & Security */}
-        <section className="mt-6 rounded-2xl bg-white shadow-sm">
-          <div className="border-b border-slate-100 p-5 sm:p-6">
-            <h2 className="font-bold text-slate-950">
-              Account & Security
-            </h2>
-          </div>
-
-          <div className="divide-y divide-slate-100">
+        {/* Account Actions */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-4">
+          <h2 className="font-bold text-base text-[#3D4852]">Quick Account Links</h2>
+          <div className="space-y-3">
             <ActionRow
-              icon={<Lock size={19} />}
-              title="Change Password"
-              description="Update your account password."
+              icon={<Lock size={18} />}
+              title="Security & Password"
+              description="Manage account authentication PIN"
             />
 
             <ActionRow
-              icon={<FileText size={19} />}
-              title="Documents & KYC"
-              description="Manage your verification documents."
+              icon={<FileText size={18} />}
+              title="Documents & KYC Vault"
+              description="View uploaded permits and licenses"
               href="/driver/documents"
             />
 
             <ActionRow
-              icon={<HelpCircle size={19} />}
-              title="Help & Support"
-              description="Get help with your driver account."
+              icon={<HelpCircle size={18} />}
+              title="Driver Help Center"
+              description="24/7 driver support desk"
               href="/driver/support"
             />
           </div>
         </section>
 
-        {/* Logout */}
-        <section className="mt-6 rounded-2xl border border-red-100 bg-red-50 p-5">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <h2 className="font-bold text-red-800">
-                Sign out of your account
-              </h2>
-
-              <p className="mt-1 text-sm text-red-600">
-                You can sign back in anytime using your registered
-                mobile number.
-              </p>
-            </div>
-
-            <button className="flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm font-semibold text-white hover:bg-red-700">
-              <LogOut size={17} />
-              Logout
-            </button>
+        {/* Sign Out Card */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-red-500/20">
+          <div>
+            <h3 className="font-bold text-sm text-[#3D4852]">Sign Out of Driver Terminal</h3>
+            <p className="text-xs text-[#6B7280]">Your active session will be safely closed.</p>
           </div>
-        </section>
 
-        {/* Back */}
-        <div className="mt-6">
-          <Link
-            href="/driver"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
-          >
-            <ArrowLeft size={16} />
-            Back to Driver Dashboard
-          </Link>
-        </div>
+          <button className="neu-btn px-6 py-3 rounded-2xl text-xs font-bold text-red-600 hover:text-red-700 inline-flex items-center gap-2 self-start sm:self-auto">
+            <LogOut size={16} />
+            <span>Sign Out</span>
+          </button>
+        </section>
       </div>
     </main>
   );
@@ -311,24 +244,20 @@ function ProfileField({
   onChange: (value: string) => void;
 }) {
   return (
-    <div>
-      <label className="mb-2 block text-sm font-semibold text-slate-700">
+    <div className="space-y-2">
+      <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
         {label}
       </label>
-
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#000000]">
           {icon}
         </span>
-
         <input
           value={value}
           disabled={!editing}
           onChange={(e) => onChange(e.target.value)}
-          className={`w-full rounded-xl border py-3 pl-10 pr-4 text-sm outline-none ${
-            editing
-              ? "border-slate-200 bg-white focus:border-blue-500"
-              : "border-slate-100 bg-slate-50 text-slate-600"
+          className={`w-full pl-11 pr-4 py-3.5 rounded-2xl text-xs font-bold text-[#3D4852] outline-none transition-all ${
+            editing ? "neu-input" : "neu-inset-deep opacity-80"
           }`}
         />
       </div>
@@ -346,14 +275,13 @@ function StatusCard({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-slate-100 p-4">
-      <div className="rounded-lg bg-green-50 p-2.5 text-green-600">
+    <div className="neu-inset-deep p-4 rounded-2xl flex items-center gap-3">
+      <div className="neu-extruded p-2.5 rounded-xl text-[#000000]">
         {icon}
       </div>
-
       <div>
-        <p className="text-xs text-slate-500">{title}</p>
-        <p className="mt-0.5 font-semibold text-green-600">{value}</p>
+        <p className="text-[10px] font-bold uppercase text-[#6B7280]">{title}</p>
+        <p className="font-extrabold text-xs text-[#000000] mt-0.5">{value}</p>
       </div>
     </div>
   );
@@ -373,31 +301,24 @@ function SettingRow({
   onToggle: () => void;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 p-5 sm:p-6">
-      <div className="flex items-start gap-3">
-        <div className="rounded-xl bg-blue-50 p-2.5 text-blue-600">
+    <div className="neu-inset-deep p-5 rounded-2xl flex items-center justify-between gap-4">
+      <div className="flex items-center gap-3">
+        <div className="neu-extruded p-2.5 rounded-xl text-[#000000]">
           {icon}
         </div>
-
         <div>
-          <p className="font-semibold text-slate-900">{title}</p>
-          <p className="mt-1 text-sm text-slate-500">
-            {description}
-          </p>
+          <h4 className="font-bold text-xs text-[#3D4852]">{title}</h4>
+          <p className="text-[11px] text-[#6B7280]">{description}</p>
         </div>
       </div>
 
       <button
         onClick={onToggle}
-        className={`relative h-6 w-11 flex-shrink-0 rounded-full transition ${
-          enabled ? "bg-blue-600" : "bg-slate-300"
+        className={`neu-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
+          enabled ? "text-[#000000] border border-black/10" : "text-[#6B7280]"
         }`}
       >
-        <span
-          className={`absolute top-1 h-4 w-4 rounded-full bg-white transition ${
-            enabled ? "left-6" : "left-1"
-          }`}
-        />
+        {enabled ? "ENABLED" : "DISABLED"}
       </button>
     </div>
   );
@@ -415,21 +336,18 @@ function ActionRow({
   href?: string;
 }) {
   const content = (
-    <div className="flex items-center justify-between gap-4 p-5 hover:bg-slate-50 sm:p-6">
+    <div className="neu-inset-sm hover:neu-btn p-4 rounded-2xl flex items-center justify-between gap-4 transition-all">
       <div className="flex items-center gap-3">
-        <div className="rounded-xl bg-slate-100 p-2.5 text-slate-600">
+        <div className="neu-extruded p-2.5 rounded-xl text-[#000000]">
           {icon}
         </div>
-
         <div>
-          <p className="font-semibold text-slate-900">{title}</p>
-          <p className="mt-1 text-sm text-slate-500">
-            {description}
-          </p>
+          <h4 className="font-bold text-xs text-[#3D4852]">{title}</h4>
+          <p className="text-[11px] text-[#6B7280]">{description}</p>
         </div>
       </div>
 
-      <ChevronRight size={19} className="text-slate-400" />
+      <ChevronRight size={16} className="text-[#6B7280]" />
     </div>
   );
 
@@ -437,5 +355,5 @@ function ActionRow({
     return <Link href={href}>{content}</Link>;
   }
 
-  return <button className="block w-full text-left">{content}</button>;
+  return <button className="w-full text-left">{content}</button>;
 }

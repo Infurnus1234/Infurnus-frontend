@@ -30,259 +30,195 @@ export default function DriverVehiclePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-6xl space-y-8">
+        
+        {/* Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000] inline-block">
+              Fleet Management
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-[#3D4852]">
+              Assigned Vehicle Details
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280] max-w-2xl">
+              View vehicle specifications, registration records, and document compliance status.
+            </p>
+          </div>
+
           <Link
             href="/driver"
-            className="mr-4 rounded-xl p-2 text-slate-600 hover:bg-slate-100"
+            className="neu-btn px-6 py-3.5 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center gap-2 self-start sm:self-auto"
           >
-            <ArrowLeft size={21} />
+            <ArrowLeft size={16} />
+            <span>Dashboard</span>
           </Link>
-
-          <Link href="/" className="text-xl font-extrabold tracking-tight">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-
-          <span className="ml-auto text-sm font-semibold text-slate-600">
-            Vehicle Details
-          </span>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <div className="mb-6">
-          <p className="text-sm text-slate-500">Driver account</p>
-
-          <h1 className="mt-1 text-2xl font-bold text-slate-950">
-            My Vehicle
-          </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            Manage your registered vehicle information.
-          </p>
         </div>
 
         {saved && (
-          <div className="mb-5 flex items-center gap-3 rounded-xl bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
+          <div className="neu-inset p-4 rounded-2xl flex items-center gap-3 text-xs font-bold text-[#000000]">
             <CheckCircle2 size={18} />
-            Vehicle information updated successfully.
+            Vehicle registration details updated successfully.
           </div>
         )}
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {/* Vehicle Main Card */}
-          <section className="overflow-hidden rounded-2xl bg-white shadow-sm lg:col-span-2">
-            {/* Vehicle Image Placeholder */}
-            <div className="relative flex h-64 items-center justify-center bg-blue-50">
-              <div className="text-center">
-                <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white text-blue-600 shadow-sm">
-                  <Car size={48} />
-                </div>
-
-                <p className="mt-4 text-sm font-semibold text-slate-600">
-                  Registered Vehicle
-                </p>
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Main Vehicle Info */}
+          <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6 lg:col-span-2">
+            {/* Graphic Badge */}
+            <div className="neu-inset-deep rounded-[28px] p-8 flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="neu-extruded h-20 w-20 rounded-3xl flex items-center justify-center text-[#000000]">
+                <Car size={40} />
               </div>
-
-              <span className="absolute right-5 top-5 flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-1.5 text-xs font-bold text-green-700">
-                <span className="h-2 w-2 rounded-full bg-green-500" />
-                Active
+              <div>
+                <h3 className="font-extrabold text-lg text-[#3D4852]">Maruti Suzuki Dzire</h3>
+                <p className="text-xs text-[#6B7280] font-mono mt-0.5">Primary Assigned Cab</p>
+              </div>
+              <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+                Status: VERIFIED FLEET
               </span>
             </div>
 
-            <div className="p-5 sm:p-6">
-              <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <p className="text-sm text-slate-500">Vehicle</p>
-
-                  <h2 className="mt-1 text-2xl font-bold text-slate-950">
-                    Maruti Suzuki Dzire
+                  <h2 className="font-display text-xl font-extrabold text-[#3D4852]">
+                    Specification Overview
                   </h2>
-
-                  <p className="mt-1 text-sm text-slate-500">
-                    White • Sedan • Petrol
-                  </p>
+                  <p className="text-xs text-[#6B7280]">White • Sedan • Petrol • AC Premier</p>
                 </div>
 
                 <button
                   onClick={() => setEditing(!editing)}
-                  className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                  className="neu-btn px-5 py-2.5 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center justify-center gap-2"
                 >
-                  <Edit3 size={16} />
-                  Edit Vehicle
+                  <Edit3 size={15} />
+                  <span>{editing ? "Cancel" : "Edit Plate"}</span>
                 </button>
               </div>
 
-              {/* Vehicle Number */}
-              <div className="mt-6 rounded-xl bg-slate-50 p-4">
-                <p className="text-xs text-slate-500">
-                  Registration Number
-                </p>
+              {/* Vehicle Registration Number Input/Display */}
+              <div className="neu-inset-deep p-6 rounded-2xl space-y-3">
+                <p className="text-[11px] font-bold uppercase text-[#6B7280]">Vehicle Plate Number</p>
 
                 {editing ? (
-                  <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <input
                       value={vehicleNumber}
                       onChange={(e) => setVehicleNumber(e.target.value)}
-                      className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3 font-semibold outline-none focus:border-blue-500"
+                      className="neu-input flex-1 px-4 py-3 rounded-xl text-xs font-mono font-bold text-[#3D4852] outline-none"
                     />
-
                     <button
                       onClick={saveChanges}
-                      className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700"
+                      className="neu-btn neu-btn-primary px-6 py-3 rounded-xl text-xs font-bold"
                     >
-                      Save
+                      Save Plate
                     </button>
                   </div>
                 ) : (
-                  <p className="mt-1 text-xl font-bold tracking-wider text-slate-900">
+                  <p className="font-mono text-2xl font-extrabold text-[#000000] tracking-wider">
                     {vehicleNumber}
                   </p>
                 )}
               </div>
 
-              {/* Details */}
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {/* Grid Specification Cards */}
+              <div className="grid gap-4 sm:grid-cols-2">
                 <VehicleDetail
-                  icon={<Car size={19} />}
-                  label="Vehicle Type"
-                  value="Sedan"
+                  icon={<Car size={18} />}
+                  label="Vehicle Category"
+                  value="4-Seater Sedan"
                 />
 
                 <VehicleDetail
-                  icon={<Gauge size={19} />}
+                  icon={<Gauge size={18} />}
                   label="Model Year"
-                  value="2024"
+                  value="2024 Model"
                 />
 
                 <VehicleDetail
-                  icon={<Fuel size={19} />}
-                  label="Fuel Type"
-                  value="Petrol"
+                  icon={<Fuel size={18} />}
+                  label="Fuel Specification"
+                  value="Petrol / CNG"
                 />
 
                 <VehicleDetail
-                  icon={<User size={19} />}
-                  label="Seating Capacity"
-                  value="4 Passengers"
+                  icon={<User size={18} />}
+                  label="Capacity"
+                  value="4 Passengers + Driver"
                 />
 
                 <VehicleDetail
-                  icon={<MapPin size={19} />}
-                  label="Registered City"
-                  value="Bengaluru"
+                  icon={<MapPin size={18} />}
+                  label="Registered Hub"
+                  value="Bengaluru Metro"
                 />
 
                 <VehicleDetail
-                  icon={<ShieldCheck size={19} />}
-                  label="Vehicle Status"
-                  value="Verified"
+                  icon={<ShieldCheck size={18} />}
+                  label="Verification State"
+                  value="100% Compliant"
                 />
               </div>
             </div>
           </section>
 
-          {/* Right */}
-          <aside className="space-y-6">
-            {/* Verification */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
+          {/* Right Sidebar */}
+          <aside className="space-y-8">
+            {/* Document Compliance */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-6">
               <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-green-50 p-3 text-green-600">
-                  <ShieldCheck size={21} />
+                <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+                  <ShieldCheck size={20} />
                 </div>
-
                 <div>
-                  <h2 className="font-bold text-slate-950">
-                    Vehicle Verification
+                  <h2 className="font-bold text-base text-[#3D4852]">
+                    Document Audit
                   </h2>
-
-                  <p className="text-xs text-green-600">
-                    All documents verified
-                  </p>
+                  <p className="text-[11px] text-[#6B7280]">Verification Active</p>
                 </div>
               </div>
 
-              <div className="mt-5 space-y-3">
-                <DocumentStatus
-                  title="RC / Registration Certificate"
-                  status="Verified"
-                />
-
-                <DocumentStatus
-                  title="Insurance"
-                  status="Verified"
-                />
-
-                <DocumentStatus
-                  title="Pollution Certificate"
-                  status="Verified"
-                />
-
-                <DocumentStatus
-                  title="Vehicle Permit"
-                  status="Verified"
-                />
+              <div className="neu-inset-deep p-5 rounded-2xl space-y-3">
+                <DocumentStatus title="Registration Certificate (RC)" status="Valid" />
+                <DocumentStatus title="Commercial Insurance" status="Valid" />
+                <DocumentStatus title="Pollution Check (PUC)" status="Valid" />
+                <DocumentStatus title="State Transport Permit" status="Valid" />
               </div>
 
               <Link
                 href="/driver/documents"
-                className="mt-5 flex items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                className="neu-btn block w-full py-3.5 rounded-2xl text-center text-xs font-bold text-[#3D4852]"
               >
-                <FileText size={17} />
-                Manage Documents
+                Upload / Update Documents
               </Link>
             </section>
 
-            {/* Vehicle Rules */}
-            <section className="rounded-2xl bg-slate-950 p-5 text-white">
-              <h2 className="font-bold">Vehicle Requirements</h2>
-
-              <div className="mt-4 space-y-3 text-sm text-slate-300">
-                <p>✓ Keep insurance valid</p>
-                <p>✓ Keep RC information updated</p>
-                <p>✓ Maintain vehicle cleanliness</p>
-                <p>✓ Complete periodic inspections</p>
-              </div>
+            {/* Compliance Guidelines */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
+              <h2 className="font-bold text-base text-[#3D4852]">Fleet Standards</h2>
+              <ul className="space-y-2 text-xs text-[#6B7280]">
+                <li className="flex items-center gap-2"><span className="neu-inset-sm h-2 w-2 rounded-full bg-[#000000]" /> Clean vehicle exterior & interior daily</li>
+                <li className="flex items-center gap-2"><span className="neu-inset-sm h-2 w-2 rounded-full bg-[#000000]" /> Keep Commercial Insurance updated</li>
+                <li className="flex items-center gap-2"><span className="neu-inset-sm h-2 w-2 rounded-full bg-[#000000]" /> Maintain AC system functionality</li>
+              </ul>
             </section>
 
-            {/* Driver */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
-              <h2 className="font-bold text-slate-950">
-                Assigned Driver
-              </h2>
-
-              <div className="mt-4 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
+            {/* Assigned Driver Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
+              <h2 className="font-bold text-base text-[#3D4852]">Assigned Operator</h2>
+              <div className="neu-inset-deep p-4 rounded-2xl flex items-center gap-3">
+                <div className="neu-extruded h-10 w-10 rounded-xl flex items-center justify-center font-bold text-xs text-[#000000]">
                   AS
                 </div>
-
                 <div>
-                  <p className="font-semibold text-slate-900">
-                    Aarav Singh
-                  </p>
-
-                  <p className="text-xs text-slate-500">
-                    Primary Driver
-                  </p>
+                  <p className="font-extrabold text-sm text-[#3D4852]">Aarav Singh</p>
+                  <p className="text-[11px] text-[#6B7280]">Primary Licensed Driver</p>
                 </div>
               </div>
             </section>
           </aside>
-        </div>
-
-        {/* Back */}
-        <div className="mt-6">
-          <Link
-            href="/driver"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
-          >
-            <ArrowLeft size={16} />
-            Back to Driver Dashboard
-          </Link>
         </div>
       </div>
     </main>
@@ -299,14 +235,13 @@ function VehicleDetail({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-slate-100 p-4">
-      <div className="rounded-lg bg-blue-50 p-2.5 text-blue-600">
+    <div className="neu-inset-deep p-4 rounded-2xl flex items-center gap-3">
+      <div className="neu-extruded p-2.5 rounded-xl text-[#000000] shrink-0">
         {icon}
       </div>
-
       <div>
-        <p className="text-xs text-slate-500">{label}</p>
-        <p className="mt-0.5 font-semibold text-slate-900">{value}</p>
+        <p className="text-[10px] font-bold uppercase text-[#6B7280]">{label}</p>
+        <p className="font-bold text-xs text-[#3D4852] mt-0.5">{value}</p>
       </div>
     </div>
   );
@@ -320,16 +255,12 @@ function DocumentStatus({
   status: string;
 }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-100 p-3">
+    <div className="flex items-center justify-between gap-3 text-xs font-bold text-[#3D4852]">
       <div className="flex items-center gap-2">
-        <FileText size={17} className="text-slate-400" />
-
-        <span className="text-sm font-medium text-slate-700">
-          {title}
-        </span>
+        <FileText size={15} className="text-[#000000]" />
+        <span>{title}</span>
       </div>
-
-      <span className="text-xs font-semibold text-green-600">
+      <span className="neu-inset-sm px-2.5 py-0.5 rounded-full text-[10px] text-[#000000]">
         {status}
       </span>
     </div>

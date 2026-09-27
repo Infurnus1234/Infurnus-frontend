@@ -387,82 +387,60 @@ export default function ActiveTripPage() {
    */
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50">
-        <div className="text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600" />
-
-          <p className="mt-4 text-sm font-medium text-slate-500">
-            Loading active trip...
+      <main className="flex min-h-screen items-center justify-center bg-[#E0E5EC] p-4 text-[#3D4852]">
+        <div className="neu-extruded p-10 rounded-[32px] text-center space-y-4">
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-[#A3B1C6] border-t-[#000000]" />
+          <p className="text-sm font-bold text-[#6B7280]">
+            Loading active trip details...
           </p>
         </div>
       </main>
     );
   }
 
-  /*
-   * =========================================================
-   * 🟢 NEW:
-   * No accepted booking
-   * =========================================================
-   */
   if (!booking) {
     return (
-      <main className="min-h-screen bg-slate-50">
-        <header className="sticky top-0 z-20 border-b bg-white">
-          <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-4">
+      <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+        <div className="mx-auto max-w-4xl space-y-6">
+          <div className="flex items-center gap-3">
             <Link
               href="/provider"
-              className="rounded-xl p-2 hover:bg-slate-100"
+              className="neu-btn p-3 rounded-2xl text-[#3D4852]"
             >
-              <ArrowLeft size={20} />
+              <ArrowLeft size={18} />
             </Link>
-
-            <div>
-              <h1 className="text-xl font-bold text-slate-950">
-                Active Trip
-              </h1>
-
-              <p className="text-sm text-slate-500">
-                No active trip
-              </p>
-            </div>
+            <h1 className="font-display text-2xl font-extrabold text-[#3D4852]">
+              Active Trip Navigation
+            </h1>
           </div>
-        </header>
 
-        <div className="mx-auto max-w-5xl px-4 py-12">
-          <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-sm">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-blue-600">
-              <Navigation size={28} />
+          <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-10 text-center space-y-4">
+            <div className="neu-inset-deep inline-flex p-5 rounded-3xl text-[#000000]">
+              <Navigation size={36} />
             </div>
 
-            <h2 className="mt-5 text-xl font-bold text-slate-950">
-              No active trip
+            <h2 className="font-display text-2xl font-extrabold text-[#3D4852]">
+              No Active Trip Found
             </h2>
 
-            <p className="mx-auto mt-2 max-w-md text-sm text-slate-500">
-              There is currently no accepted customer booking.
-              Accept a trip request from your provider
-              dashboard to start a trip.
+            <p className="mx-auto max-w-md text-xs text-[#6B7280] leading-relaxed">
+              There is currently no accepted booking assigned. Accept a new request from your provider dashboard to initialize trip navigation.
             </p>
 
-            <Link
-              href="/provider"
-              className="mt-6 inline-block rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700"
-            >
-              Back to Dashboard
-            </Link>
+            <div className="pt-2">
+              <Link
+                href="/provider"
+                className="neu-btn neu-btn-primary px-8 py-3.5 text-xs font-bold"
+              >
+                Return to Provider Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       </main>
     );
   }
 
-  /*
-   * =========================================================
-   * 🟢 NEW:
-   * Customer initials for avatar
-   * =========================================================
-   */
   const customerInitials = booking.customer
     .split(" ")
     .map((name) => name[0])
@@ -471,43 +449,39 @@ export default function ActiveTripPage() {
     .toUpperCase();
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* =====================================================
-          HEADER
-          ===================================================== */}
-      <header className="sticky top-0 z-20 border-b bg-white">
-        <div className="mx-auto flex max-w-5xl items-center gap-4 px-4 py-4">
-          <Link
-            href="/provider"
-            className="rounded-xl p-2 hover:bg-slate-100"
-          >
-            <ArrowLeft size={20} />
-          </Link>
-
-          <div>
-            <h1 className="text-xl font-bold text-slate-950">
-              Active Trip
-            </h1>
-
-            <p className="text-sm text-slate-500">
-              {booking.service} trip
-            </p>
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-5xl space-y-6">
+        <div className="flex items-center justify-between neu-extruded rounded-[28px] bg-[#E0E5EC] p-6">
+          <div className="flex items-center gap-3">
+            <Link
+              href="/provider"
+              className="neu-btn p-3 rounded-2xl text-[#3D4852]"
+            >
+              <ArrowLeft size={18} />
+            </Link>
+            <div>
+              <h1 className="font-display text-xl font-bold text-[#3D4852]">
+                Active Trip Execution
+              </h1>
+              <p className="text-xs text-[#6B7280] font-mono">
+                Booking ID: {booking.id}
+              </p>
+            </div>
           </div>
+          <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold text-[#000000]">
+            {booking.service}
+          </span>
         </div>
-      </header>
 
-      <div className="mx-auto max-w-5xl px-4 py-6">
-        {/* =====================================================
-            STATUS
-            ===================================================== */}
-        <div className="mb-6 rounded-2xl border bg-white p-6 shadow-sm">
+        {/* STATUS */}
+        <div className="neu-extruded rounded-[32px] bg-[#E0E5EC] p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
+              <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
                 {booking.service}
               </span>
 
-              <h2 className="mt-3 text-2xl font-bold text-slate-950">
+              <h2 className="font-display text-2xl font-extrabold text-[#3D4852] mt-3">
                 {statusText[status]}
               </h2>
 

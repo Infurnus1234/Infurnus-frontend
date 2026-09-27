@@ -194,52 +194,38 @@ const toggleVehicleStatus = (vehicleId: number) => {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* HEADER */}
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/provider"
-            className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-950"
-          >
-            <ArrowLeft size={18} />
-            Dashboard
-          </Link>
-
-          <Link
-            href="/"
-            className="ml-auto text-xl font-extrabold tracking-tight sm:absolute sm:left-1/2 sm:-translate-x-1/2"
-          >
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">
-        {/* TITLE */}
-        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div>
-            <p className="text-sm font-semibold text-blue-600">
-              PROVIDER
-            </p>
-
-            <h1 className="mt-1 text-2xl font-bold text-slate-950">
-              Vehicles
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-7xl space-y-6">
+        {/* HEADER / TITLE */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8">
+          <div className="space-y-1">
+            <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+              PROVIDER DASHBOARD
+            </span>
+            <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3D4852]">
+              Vehicle Fleet Management
             </h1>
-
-            <p className="mt-1 text-sm text-slate-500">
-              Manage your vehicles and vehicle assignments.
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
+              Manage your registered vehicles and driver assignments.
             </p>
           </div>
 
-          <button
-            onClick={() => setShowAdd(true)}
-            className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700"
-          >
-            <Plus size={18} />
-            Add Vehicle
-          </button>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/provider"
+              className="neu-btn px-4 py-3 text-xs font-bold flex items-center gap-2"
+            >
+              <ArrowLeft size={16} />
+              <span>Back to Dashboard</span>
+            </Link>
+            <button
+              onClick={() => setShowAdd(true)}
+              className="neu-btn neu-btn-primary px-5 py-3 text-xs font-bold flex items-center gap-2"
+            >
+              <Plus size={16} />
+              <span>Add Vehicle</span>
+            </button>
+          </div>
         </div>
 
         {/* SUMMARY */}
@@ -479,18 +465,16 @@ function Summary({
   icon: React.ElementType;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-500">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
           {title}
         </p>
-
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-          <Icon size={18} />
+        <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+          <Icon size={20} />
         </div>
       </div>
-
-      <p className="mt-3 text-2xl font-bold text-slate-950">
+      <p className="text-2xl font-extrabold text-[#3D4852]">
         {value}
       </p>
     </div>
@@ -505,12 +489,11 @@ function Detail({
   value: string;
 }) {
   return (
-    <div className="rounded-xl border border-slate-100 p-3">
-      <p className="text-xs text-slate-400">
+    <div className="neu-inset-deep p-3 rounded-xl">
+      <p className="text-[11px] font-bold uppercase text-[#6B7280]">
         {label}
       </p>
-
-      <p className="mt-1 text-sm font-semibold text-slate-700">
+      <p className="mt-0.5 text-xs font-bold text-[#3D4852]">
         {value}
       </p>
     </div>

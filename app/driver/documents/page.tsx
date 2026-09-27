@@ -64,7 +64,6 @@ export default function DriverDocumentsPage() {
 
   const handleFile = (file: File | undefined) => {
     if (!file) return;
-
     setFileName(file.name);
   };
 
@@ -89,123 +88,103 @@ export default function DriverDocumentsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-6xl space-y-8">
+        
+        {/* Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000] inline-block">
+              KYC & Compliance
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-[#3D4852]">
+              Driver Verification Vault
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280] max-w-2xl">
+              Manage your commercial driving permit, identity credentials, and vehicle compliance documents.
+            </p>
+          </div>
+
           <Link
             href="/driver"
-            className="mr-4 rounded-xl p-2 text-slate-600 hover:bg-slate-100"
+            className="neu-btn px-6 py-3.5 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center gap-2 self-start sm:self-auto"
           >
-            <ArrowLeft size={21} />
+            <ArrowLeft size={16} />
+            <span>Dashboard</span>
           </Link>
-
-          <Link href="/" className="text-xl font-extrabold tracking-tight">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-
-          <span className="ml-auto text-sm font-semibold text-slate-600">
-            Documents & KYC
-          </span>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <div className="mb-6">
-          <p className="text-sm text-slate-500">Driver account</p>
-
-          <h1 className="mt-1 text-2xl font-bold text-slate-950">
-            Documents & KYC
-          </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            Manage your identity, driving and vehicle documents.
-          </p>
         </div>
 
-        {/* KYC Status */}
-        <section className="rounded-2xl bg-white p-5 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {/* KYC Status Card */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 text-green-600">
-                <ShieldCheck size={25} />
+              <div className="neu-inset-deep p-3 rounded-2xl text-[#000000]">
+                <ShieldCheck size={28} />
               </div>
-
               <div>
-                <h2 className="font-bold text-slate-950">
-                  KYC Verification
+                <h2 className="font-display text-xl font-bold text-[#3D4852]">
+                  KYC Compliance Status
                 </h2>
-
-                <p className="mt-1 text-sm text-slate-500">
-                  Your driver account is verified.
+                <p className="text-xs text-[#6B7280]">
+                  Your driver profile is fully verified for commercial dispatch.
                 </p>
               </div>
             </div>
 
-            <span className="w-fit rounded-full bg-green-100 px-4 py-2 text-xs font-bold text-green-700">
-              VERIFIED
+            <span className="neu-inset-sm px-4 py-2 rounded-full text-xs font-extrabold text-[#000000] self-start sm:self-auto">
+              100% VERIFIED
             </span>
           </div>
 
-          {/* Progress */}
-          <div className="mt-6">
-            <div className="mb-2 flex justify-between text-xs">
-              <span className="font-medium text-slate-600">
-                Verification Progress
-              </span>
-
-              <span className="font-semibold text-green-600">
-                100%
-              </span>
+          {/* Progress Bar */}
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs font-bold text-[#3D4852]">
+              <span>Verification Index</span>
+              <span>100% Complete</span>
             </div>
 
-            <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full w-full rounded-full bg-green-500" />
+            <div className="neu-inset-deep h-3.5 p-0.5 rounded-full overflow-hidden">
+              <div className="h-full bg-[#000000] rounded-full" style={{ width: "100%" }} />
             </div>
           </div>
         </section>
 
-        {/* Documents */}
-        <section className="mt-6 rounded-2xl bg-white shadow-sm">
-          <div className="border-b border-slate-100 p-5">
-            <h2 className="text-lg font-bold text-slate-950">
-              My Documents
+        {/* Documents List */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+          <div>
+            <h2 className="font-display text-xl font-bold text-[#3D4852]">
+              Active Driver Credentials
             </h2>
-
-            <p className="mt-1 text-sm text-slate-500">
-              Keep your documents valid and up to date.
+            <p className="text-xs text-[#6B7280]">
+              Keep all digital permits updated to prevent dispatch holds.
             </p>
           </div>
 
-          <div className="divide-y divide-slate-100">
+          <div className="space-y-4">
             {documents.map((document) => (
               <div
                 key={document.id}
-                className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
+                className="neu-inset-deep rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                    <FileText size={21} />
+                  <div className="neu-extruded p-3 rounded-xl text-[#000000]">
+                    <FileText size={20} />
                   </div>
 
                   <div>
-                    <p className="font-semibold text-slate-900">
+                    <h3 className="font-bold text-sm text-[#3D4852]">
                       {document.title}
-                    </p>
-
-                    <p className="mt-1 text-xs text-slate-500">
+                    </h3>
+                    <p className="text-xs text-[#6B7280] mt-0.5">
                       {document.type} • {document.number}
                     </p>
-
-                    <p className="mt-1 text-xs text-slate-400">
+                    <p className="text-[11px] font-mono text-[#6B7280] mt-1">
                       Expiry: {document.expiry}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between sm:justify-end gap-4">
                   <DocumentBadge status={document.status} />
 
                   <button
@@ -213,7 +192,7 @@ export default function DriverDocumentsPage() {
                       setSelectedDocument(document.title);
                       setFileName("");
                     }}
-                    className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                    className="neu-btn px-4 py-2 rounded-xl text-xs font-bold text-[#3D4852]"
                   >
                     Update
                   </button>
@@ -223,76 +202,62 @@ export default function DriverDocumentsPage() {
           </div>
         </section>
 
-        {/* Upload */}
-        <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm">
-          <div className="flex items-start gap-4">
-            <div className="rounded-xl bg-blue-50 p-3 text-blue-600">
-              <Upload size={22} />
+        {/* Upload Form */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
+          <div className="flex items-center gap-4">
+            <div className="neu-inset-deep p-3 rounded-2xl text-[#000000]">
+              <Upload size={24} />
             </div>
-
             <div>
-              <h2 className="text-lg font-bold text-slate-950">
-                Upload Document
+              <h2 className="font-display text-xl font-bold text-[#3D4852]">
+                Upload New Document
               </h2>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Upload a clear PDF, JPG or PNG of your document.
+              <p className="text-xs text-[#6B7280]">
+                Submit high-resolution PDF or Image files for verification.
               </p>
             </div>
           </div>
 
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Document Type
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+                Document Category
               </label>
-
               <select
                 value={selectedDocument}
                 onChange={(e) => {
                   setSelectedDocument(e.target.value);
                   setFileName("");
                 }}
-                className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-blue-500"
+                className="neu-input w-full px-4 py-3.5 rounded-2xl text-xs font-bold text-[#3D4852] outline-none"
               >
-                <option value="">Select document</option>
-                <option value="Driving Licence">
-                  Driving Licence
-                </option>
-                <option value="Aadhaar Card">
-                  Aadhaar Card
-                </option>
-                <option value="Vehicle RC">
-                  Vehicle RC
-                </option>
-                <option value="Vehicle Insurance">
-                  Vehicle Insurance
-                </option>
-                <option value="PUC Certificate">
-                  PUC Certificate
-                </option>
+                <option value="">Select Document...</option>
+                <option value="Driving Licence">Driving Licence</option>
+                <option value="Aadhaar Card">Aadhaar Card</option>
+                <option value="Vehicle RC">Vehicle RC</option>
+                <option value="Vehicle Insurance">Vehicle Insurance</option>
+                <option value="PUC Certificate">PUC Certificate</option>
               </select>
             </div>
 
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Choose File
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+                Select File
               </label>
 
-              <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-slate-300 px-4 py-3 hover:bg-slate-50">
-                <Upload size={19} className="text-slate-400" />
-
-                <span className="truncate text-sm text-slate-500">
-                  {fileName || "Choose a file"}
-                </span>
+              <label className="neu-input flex cursor-pointer items-center justify-between px-4 py-3.5 rounded-2xl">
+                <div className="flex items-center gap-3 truncate">
+                  <Upload size={18} className="text-[#000000]" />
+                  <span className="truncate text-xs font-bold text-[#3D4852]">
+                    {fileName || "Choose document file..."}
+                  </span>
+                </div>
 
                 <input
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   className="hidden"
-                  onChange={(e) =>
-                    handleFile(e.target.files?.[0])
-                  }
+                  onChange={(e) => handleFile(e.target.files?.[0])}
                 />
               </label>
             </div>
@@ -301,43 +266,32 @@ export default function DriverDocumentsPage() {
           <button
             onClick={uploadDocument}
             disabled={uploading || !selectedDocument || !fileName}
-            className="mt-5 rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+            className="neu-btn neu-btn-primary px-8 py-3.5 rounded-2xl text-xs font-bold disabled:opacity-50"
           >
-            {uploading ? "Uploading..." : "Upload for Verification"}
+            {uploading ? "Submitting File..." : "Submit Document for Verification"}
           </button>
         </section>
 
-        {/* Requirements */}
-        <section className="mt-6 grid gap-4 sm:grid-cols-3">
+        {/* Requirements Cards */}
+        <section className="grid gap-6 sm:grid-cols-3">
           <Requirement
             icon={<FileCheck2 size={20} />}
-            title="Clear Documents"
-            text="Make sure all text and photos are clearly visible."
+            title="High Visibility"
+            text="Ensure document corners and text numbers are legible."
           />
 
           <Requirement
             icon={<Clock3 size={20} />}
-            title="Valid Documents"
-            text="Expired documents may affect your driver account."
+            title="Active Validity"
+            text="Submitting expired permits will pause automated trip dispatch."
           />
 
           <Requirement
             icon={<ShieldCheck size={20} />}
-            title="Secure Verification"
-            text="Documents are reviewed before approval."
+            title="Encrypted Verification"
+            text="All documents undergo automated AI & manual compliance audits."
           />
         </section>
-
-        {/* Back */}
-        <div className="mt-6">
-          <Link
-            href="/driver"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
-          >
-            <ArrowLeft size={16} />
-            Back to Driver Dashboard
-          </Link>
-        </div>
       </div>
     </main>
   );
@@ -346,7 +300,7 @@ export default function DriverDocumentsPage() {
 function DocumentBadge({ status }: { status: string }) {
   if (status === "Verified") {
     return (
-      <span className="flex items-center gap-1.5 rounded-full bg-green-100 px-3 py-1.5 text-xs font-bold text-green-700">
+      <span className="neu-inset-sm px-3 py-1 rounded-full text-xs font-bold text-[#000000] inline-flex items-center gap-1.5">
         <CheckCircle2 size={14} />
         Verified
       </span>
@@ -355,7 +309,7 @@ function DocumentBadge({ status }: { status: string }) {
 
   if (status === "Rejected") {
     return (
-      <span className="flex items-center gap-1.5 rounded-full bg-red-100 px-3 py-1.5 text-xs font-bold text-red-700">
+      <span className="neu-inset-sm px-3 py-1 rounded-full text-xs font-bold text-red-600 inline-flex items-center gap-1.5">
         <XCircle size={14} />
         Rejected
       </span>
@@ -363,7 +317,7 @@ function DocumentBadge({ status }: { status: string }) {
   }
 
   return (
-    <span className="flex items-center gap-1.5 rounded-full bg-orange-100 px-3 py-1.5 text-xs font-bold text-orange-700">
+    <span className="neu-inset-sm px-3 py-1 rounded-full text-xs font-bold text-[#6B7280] inline-flex items-center gap-1.5">
       <Clock3 size={14} />
       Pending
     </span>
@@ -380,16 +334,12 @@ function Requirement({
   text: string;
 }) {
   return (
-    <div className="rounded-2xl bg-white p-5 shadow-sm">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
+      <div className="neu-inset-deep inline-flex p-3 rounded-xl text-[#000000]">
         {icon}
       </div>
-
-      <h3 className="mt-4 font-bold text-slate-950">{title}</h3>
-
-      <p className="mt-1 text-sm leading-6 text-slate-500">
-        {text}
-      </p>
+      <h3 className="font-bold text-sm text-[#3D4852]">{title}</h3>
+      <p className="text-xs text-[#6B7280] leading-relaxed">{text}</p>
     </div>
   );
 }

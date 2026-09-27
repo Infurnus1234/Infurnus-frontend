@@ -263,42 +263,30 @@ export default function ProviderEarningsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* HEADER */}
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-6xl items-center px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-6xl space-y-6">
+        
+        {/* Header Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8">
+          <div className="space-y-1">
+            <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+              PROVIDER DASHBOARD
+            </span>
+            <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3D4852]">
+              Earnings & Payout Ledger
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
+              Monitor daily trip revenues, completed job balances, and bank withdrawals.
+            </p>
+          </div>
+
           <Link
             href="/provider"
-            className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-950"
+            className="neu-btn px-4 py-3 text-xs font-bold flex items-center gap-2 w-fit"
           >
-            <ArrowLeft size={18} />
-            Dashboard
+            <ArrowLeft size={16} />
+            <span>Back to Dashboard</span>
           </Link>
-
-          <Link
-            href="/"
-            className="ml-auto text-xl font-extrabold tracking-tight sm:absolute sm:left-1/2 sm:-translate-x-1/2"
-          >
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 lg:px-8">
-        {/* TITLE */}
-        <div>
-          <p className="text-sm font-semibold text-blue-600">
-            PROVIDER
-          </p>
-
-          <h1 className="mt-1 text-2xl font-bold text-slate-950">
-            Earnings
-          </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            Track your earnings, payouts and transactions.
-          </p>
         </div>
 
         {/* BALANCE */}
@@ -640,22 +628,21 @@ function Stat({
   icon: React.ElementType;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-500">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
           {title}
         </p>
-
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-          <Icon size={18} />
+        <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+          <Icon size={20} />
         </div>
       </div>
 
-      <p className="mt-3 text-2xl font-bold text-slate-950">
+      <p className="text-2xl font-extrabold text-[#3D4852]">
         {value}
       </p>
 
-      <p className="mt-1 text-xs text-slate-400">
+      <p className="text-[11px] font-bold text-[#000000]">
         {note}
       </p>
     </div>

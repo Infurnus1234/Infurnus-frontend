@@ -27,69 +27,46 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-[#E0E5EC] py-24">
       <div className="mx-auto max-w-7xl px-6">
-
-        {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
-
-          <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-600">
+          <span className="inline-block neu-inset-sm px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#000000] rounded-full">
             How It Works
           </span>
-
-          <h2 className="mt-5 text-3xl font-bold text-slate-900 md:text-5xl">
+          <h2 className="font-display mt-5 text-3xl font-extrabold text-[#3D4852] md:text-5xl tracking-tight">
             Get Started in Just a Few Steps
           </h2>
-
-          <p className="mt-5 text-base leading-7 text-slate-500 md:text-lg">
-            Booking a ride or delivery with Infurnus is simple,
-            quick and hassle-free.
+          <p className="mt-5 text-base leading-relaxed text-[#6B7280] md:text-lg font-sans">
+            Booking a ride or delivery with Infurnus is simple, quick, tactile, and completely hassle-free.
           </p>
-
         </div>
 
-
-        {/* Steps */}
         <div className="relative mt-16">
-
-          {/* Connecting line - desktop */}
-          <div className="absolute left-[12%] right-[12%] top-9 hidden h-px bg-blue-200 lg:block" />
-
-          <div className="relative grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-
+          <div className="absolute left-[10%] right-[10%] top-20 hidden h-3 neu-inset-sm rounded-full lg:block" />
+          <div className="relative grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {steps.map((step) => (
               <div
                 key={step.number}
-                className="group text-center"
+                className="group neu-extruded neu-extruded-hover rounded-[32px] p-8 bg-[#E0E5EC] text-center transition-all duration-300 flex flex-col items-center"
               >
-
-                {/* Icon */}
-                <div className="relative mx-auto flex h-20 w-20 items-center justify-center rounded-full border-4 border-white bg-blue-50 text-3xl shadow-md transition duration-300 group-hover:scale-110 group-hover:bg-blue-100">
-                  {step.icon}
-
-                  {/* Number */}
-                  <span className="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                <div className="relative mx-auto neu-inset-deep flex h-24 w-24 items-center justify-center rounded-2xl text-4xl transition-transform duration-300 group-hover:scale-105">
+                  <div className="neu-extruded flex h-16 w-16 items-center justify-center rounded-xl bg-[#E0E5EC]">
+                    {step.icon}
+                  </div>
+                  <span className="absolute -right-3 -top-3 neu-extruded flex h-9 w-9 items-center justify-center rounded-full bg-[#000000] text-xs font-extrabold text-white shadow-sm">
                     {step.number}
                   </span>
                 </div>
-
-
-                {/* Content */}
-                <h3 className="mt-6 text-xl font-bold text-slate-900">
+                <h3 className="font-display mt-6 text-xl font-bold text-[#3D4852]">
                   {step.title}
                 </h3>
-
-                <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-slate-500">
+                <p className="font-sans mt-3 text-sm leading-relaxed text-[#6B7280]">
                   {step.description}
                 </p>
-
               </div>
             ))}
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

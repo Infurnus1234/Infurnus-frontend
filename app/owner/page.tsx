@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import {
-  Bell,
   Car,
   ChevronRight,
   CircleDollarSign,
   ClipboardList,
   FileText,
   MapPin,
-  Menu,
   Settings,
   ShieldCheck,
   TrendingUp,
@@ -55,362 +53,276 @@ const vehicles = [
 
 export default function OwnerDashboard() {
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-2xl font-extrabold tracking-tight">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
+    <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-7xl space-y-8">
+        
+        {/* Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000] inline-block">
+              Fleet Owner Command Portal
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-[#3D4852]">
+              Welcome back, Vikram Rao 👋
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280] max-w-2xl">
+              Monitor live vehicles, manage driver assignments, and audit total fleet revenue metrics.
+            </p>
+          </div>
 
-          <div className="flex items-center gap-3">
-            <button className="relative rounded-xl p-2 text-slate-600 hover:bg-slate-100">
-              <Bell size={20} />
-
-              <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500" />
-            </button>
-
-            <div className="hidden items-center gap-3 border-l border-slate-200 pl-4 sm:flex">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
-                VR
-              </div>
-
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  Vikram Rao
-                </p>
-
-                <p className="text-xs text-slate-500">
-                  Fleet Owner
-                </p>
-              </div>
-            </div>
-
-            <button className="rounded-xl p-2 text-slate-600 sm:hidden">
-              <Menu size={21} />
-            </button>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="neu-inset-sm px-4 py-2.5 rounded-2xl text-xs font-bold text-[#000000] inline-flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#000000] animate-pulse" />
+              <span>Fleet Active (4 Vehicles)</span>
+            </span>
+            <Link
+              href="/provider/vehicles"
+              className="neu-btn neu-btn-primary px-6 py-3 rounded-2xl text-xs font-bold"
+            >
+              Manage Fleet
+            </Link>
           </div>
         </div>
-      </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Welcome */}
-        <section className="mb-6 rounded-2xl bg-white p-5 shadow-sm sm:p-6">
-          <p className="text-sm text-slate-500">Fleet Management</p>
-
-          <div className="mt-1 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-slate-950">
-                Welcome, Vikram 👋
-              </h1>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Manage your vehicles, drivers and fleet operations.
-              </p>
-            </div>
-
-            <span className="flex w-fit items-center gap-2 rounded-full bg-green-100 px-4 py-2 text-xs font-bold text-green-700">
-              <span className="h-2 w-2 rounded-full bg-green-500" />
-              Fleet Active
-            </span>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {/* Stats Grid */}
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
-            icon={<Car size={21} />}
-            title="Total Vehicles"
-            value="12"
-            note="10 active"
+            icon={<Car size={20} />}
+            title="Total Fleet"
+            value="12 Vehicles"
+            note="10 Active on Road"
           />
 
           <StatCard
-            icon={<Users size={21} />}
-            title="Total Drivers"
-            value="10"
-            note="8 online"
+            icon={<Users size={20} />}
+            title="Assigned Drivers"
+            value="10 Drivers"
+            note="8 Currently Online"
           />
 
           <StatCard
-            icon={<CircleDollarSign size={21} />}
+            icon={<CircleDollarSign size={20} />}
             title="Today's Revenue"
             value="₹12,850"
-            note="+14.2%"
+            note="+14.2% vs yesterday"
           />
 
           <StatCard
-            icon={<Wallet size={21} />}
+            icon={<Wallet size={20} />}
             title="Pending Settlement"
             value="₹28,450"
-            note="Available soon"
+            note="Settlement Friday"
           />
         </section>
 
-        {/* Main */}
-        <div className="mt-6 grid gap-6 lg:grid-cols-3">
-          {/* Fleet */}
-          <section className="rounded-2xl bg-white shadow-sm lg:col-span-2">
-            <div className="flex flex-col justify-between gap-3 border-b border-slate-100 p-5 sm:flex-row sm:items-center">
+        {/* Main Content Layout */}
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Fleet Overview Card */}
+          <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6 lg:col-span-2">
+            <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-bold text-slate-950">
-                  Fleet Overview
+                <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000] uppercase">
+                  Live Dispatch
+                </span>
+                <h2 className="font-display text-xl font-bold text-[#3D4852] mt-2">
+                  Fleet Vehicle Monitoring
                 </h2>
-
-                <p className="mt-1 text-sm text-slate-500">
-                  Monitor your vehicles and assigned drivers.
-                </p>
               </div>
 
               <Link
-                href="/owner/vehicles"
-                className="text-sm font-semibold text-blue-600"
+                href="/provider/vehicles"
+                className="neu-btn px-4 py-2 rounded-xl text-xs font-bold text-[#3D4852]"
               >
-                Manage Fleet
+                Full Fleet Directory
               </Link>
             </div>
 
-            <div className="divide-y divide-slate-100">
+            <div className="space-y-4">
               {vehicles.map((vehicle) => (
                 <div
                   key={vehicle.number}
-                  className="p-5"
+                  className="neu-inset-deep rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-4"
                 >
-                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-                    {/* Vehicle */}
-                    <div className="flex flex-1 items-center gap-3">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                        <Car size={21} />
-                      </div>
-
-                      <div>
-                        <p className="font-semibold text-slate-900">
-                          {vehicle.model}
-                        </p>
-
-                        <p className="mt-1 text-xs font-medium tracking-wide text-slate-500">
-                          {vehicle.number}
-                        </p>
-                      </div>
+                  {/* Vehicle Details */}
+                  <div className="flex items-center gap-4 min-w-[210px]">
+                    <div className="neu-extruded p-3 rounded-xl text-[#000000] shrink-0">
+                      <Car size={20} />
                     </div>
 
-                    {/* Driver */}
-                    <div className="flex items-center gap-2 lg:w-40">
-                      <UserRound
-                        size={17}
-                        className="text-slate-400"
-                      />
-
-                      <div>
-                        <p className="text-xs text-slate-400">
-                          Driver
-                        </p>
-
-                        <p className="text-sm font-semibold text-slate-800">
-                          {vehicle.driver}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Location */}
-                    <div className="flex items-center gap-2 lg:w-40">
-                      <MapPin
-                        size={17}
-                        className="text-slate-400"
-                      />
-
-                      <div>
-                        <p className="text-xs text-slate-400">
-                          Location
-                        </p>
-
-                        <p className="text-sm font-medium text-slate-700">
-                          {vehicle.location}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Status */}
-                    <div className="lg:w-28">
-                      <span
-                        className={`rounded-full px-3 py-1.5 text-xs font-bold ${
-                          vehicle.status === "On Trip"
-                            ? "bg-blue-100 text-blue-700"
-                            : vehicle.status === "Available"
-                              ? "bg-green-100 text-green-700"
-                              : "bg-slate-100 text-slate-600"
-                        }`}
-                      >
-                        {vehicle.status}
-                      </span>
-                    </div>
-
-                    {/* Earnings */}
-                    <div className="lg:w-24 lg:text-right">
-                      <p className="text-xs text-slate-400">
-                        Today
+                    <div>
+                      <h3 className="font-extrabold text-sm text-[#3D4852]">
+                        {vehicle.model}
+                      </h3>
+                      <p className="text-xs font-mono font-bold text-[#6B7280] mt-0.5">
+                        {vehicle.number}
                       </p>
+                    </div>
+                  </div>
 
-                      <p className="font-bold text-slate-900">
-                        {vehicle.earnings}
-                      </p>
+                  {/* Driver & Location Info */}
+                  <div className="grid grid-cols-2 gap-3 flex-1">
+                    <div className="neu-inset-sm p-3 rounded-xl">
+                      <p className="text-[10px] font-bold uppercase text-[#6B7280]">Driver</p>
+                      <p className="text-xs font-bold text-[#3D4852] truncate">{vehicle.driver}</p>
+                    </div>
+
+                    <div className="neu-inset-sm p-3 rounded-xl">
+                      <p className="text-[10px] font-bold uppercase text-[#6B7280]">Location</p>
+                      <p className="text-xs font-bold text-[#3D4852] truncate">{vehicle.location}</p>
+                    </div>
+                  </div>
+
+                  {/* Status & Earnings */}
+                  <div className="flex items-center justify-between lg:justify-end gap-4 min-w-[170px]">
+                    <span className="neu-inset-sm px-3 py-1 rounded-full text-xs font-extrabold text-[#000000]">
+                      {vehicle.status}
+                    </span>
+
+                    <div className="text-right">
+                      <p className="text-[10px] font-bold uppercase text-[#6B7280]">Today</p>
+                      <p className="text-sm font-extrabold text-[#3D4852]">{vehicle.earnings}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-slate-100 p-4 text-center">
+            <div className="pt-2 text-center">
               <Link
-                href="/owner/vehicles"
-                className="text-sm font-semibold text-blue-600"
+                href="/provider/vehicles"
+                className="neu-btn block w-full py-3.5 rounded-2xl text-center text-xs font-bold text-[#3D4852]"
               >
-                View All Vehicles
+                View All 12 Vehicles in Fleet
               </Link>
             </div>
           </section>
 
-          {/* Sidebar */}
-          <aside className="space-y-6">
-            {/* Revenue */}
-            <section className="rounded-2xl bg-slate-950 p-5 text-white">
+          {/* Right Sidebar */}
+          <aside className="space-y-8">
+            {/* Monthly Revenue Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-slate-400">
-                    This Month
-                  </p>
-
-                  <p className="mt-1 text-3xl font-bold">
-                    ₹3,84,650
-                  </p>
+                  <p className="text-xs font-bold uppercase text-[#6B7280]">Monthly Gross Revenue</p>
+                  <p className="text-3xl font-extrabold text-[#3D4852] mt-1">₹3,84,650</p>
                 </div>
-
-                <div className="rounded-xl bg-white/10 p-3">
-                  <TrendingUp size={22} />
+                <div className="neu-inset-deep p-3 rounded-2xl text-[#000000]">
+                  <TrendingUp size={24} />
                 </div>
               </div>
 
-              <div className="mt-5 flex items-center gap-2 text-sm text-green-400">
+              <div className="neu-inset-sm p-3 rounded-2xl flex items-center gap-2 text-xs font-bold text-[#000000]">
                 <TrendingUp size={16} />
-                18.5% higher than last month
+                <span>+18.5% Growth vs last month</span>
               </div>
 
               <Link
-                href="/owner/earnings"
-                className="mt-5 block rounded-xl bg-white py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-100"
+                href="/provider/earnings"
+                className="neu-btn neu-btn-primary block w-full py-3.5 rounded-2xl text-center text-xs font-bold"
               >
-                View Earnings
+                View Financial Statement
               </Link>
             </section>
 
-            {/* Quick Actions */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
-              <h2 className="font-bold text-slate-950">
-                Quick Actions
+            {/* Quick Actions Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
+              <h2 className="font-bold text-lg text-[#3D4852]">
+                Fleet Control Menu
               </h2>
 
-              <div className="mt-3 divide-y divide-slate-100">
+              <div className="space-y-3">
                 <QuickLink
-                  href="/owner/vehicles"
+                  href="/provider/vehicles"
                   icon={<Car size={18} />}
                   title="Manage Vehicles"
                 />
 
                 <QuickLink
-                  href="/owner/drivers"
+                  href="/provider/drivers"
                   icon={<Users size={18} />}
                   title="Manage Drivers"
                 />
 
                 <QuickLink
-                  href="/owner/bookings"
+                  href="/provider/trips"
                   icon={<ClipboardList size={18} />}
                   title="Fleet Bookings"
                 />
 
                 <QuickLink
-                  href="/owner/earnings"
+                  href="/provider/earnings"
                   icon={<Wallet size={18} />}
                   title="Earnings & Settlements"
                 />
 
                 <QuickLink
-                  href="/owner/documents"
+                  href="/provider/documents"
                   icon={<FileText size={18} />}
-                  title="Documents"
+                  title="Fleet Documents"
                 />
 
                 <QuickLink
-                  href="/owner/settings"
+                  href="/provider/settings"
                   icon={<Settings size={18} />}
                   title="Fleet Settings"
                 />
               </div>
             </section>
 
-            {/* Verification */}
-            <section className="rounded-2xl bg-white p-5 shadow-sm">
+            {/* Verification Card */}
+            <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-3">
               <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-green-50 p-3 text-green-600">
-                  <ShieldCheck size={21} />
+                <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+                  <ShieldCheck size={20} />
                 </div>
-
                 <div>
-                  <h2 className="font-bold text-slate-950">
-                    Fleet Verification
-                  </h2>
-
-                  <p className="mt-1 text-xs text-green-600">
-                    Account verified
-                  </p>
+                  <h3 className="font-bold text-sm text-[#3D4852]">Fleet Verification State</h3>
+                  <p className="text-[11px] text-[#000000] font-bold">100% Fully Compliant</p>
                 </div>
               </div>
-
-              <p className="mt-4 text-sm leading-6 text-slate-500">
-                All required fleet documents are currently verified.
+              <p className="text-xs text-[#6B7280] leading-relaxed">
+                All commercial vehicles, insurances, and driver KYC records are validated.
               </p>
             </section>
           </aside>
         </div>
 
-        {/* Activity */}
-        <section className="mt-6 rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+        {/* Recent Activity Section */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-bold text-slate-950">
-                Recent Fleet Activity
+              <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000] uppercase">
+                Real-time Audit
+              </span>
+              <h2 className="font-display text-xl font-bold text-[#3D4852] mt-2">
+                Recent Fleet Operations
               </h2>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Latest updates from your fleet.
-              </p>
             </div>
 
             <Link
-              href="/owner/activity"
-              className="text-sm font-semibold text-blue-600"
+              href="/provider/trips"
+              className="neu-btn px-4 py-2 rounded-xl text-xs font-bold text-[#3D4852]"
             >
-              View All
+              View Full Logs
             </Link>
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3">
             <Activity
-              title="Ride Completed"
-              description="Aarav completed a ride"
+              title="Trip Completed"
+              description="Aarav Singh completed passenger trip #INF-8842"
               time="5 min ago"
             />
 
             <Activity
-              title="Driver Online"
-              description="Rahul is now online"
+              title="Driver Shift Started"
+              description="Rahul Verma toggled status to ONLINE"
               time="18 min ago"
             />
 
             <Activity
-              title="Payout Processed"
-              description="₹25,000 transferred"
+              title="Payout Settlement"
+              description="₹25,000 processed to HDFC Account ****4521"
               time="1 hour ago"
             />
           </div>
@@ -432,22 +344,19 @@ function StatCard({
   note: string;
 }) {
   return (
-    <div className="rounded-2xl bg-white p-5 shadow-sm">
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
       <div className="flex items-center justify-between">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+          {title}
+        </p>
+        <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
           {icon}
         </div>
-
-        <span className="text-xs font-semibold text-green-600">
-          {note}
-        </span>
       </div>
-
-      <p className="mt-4 text-sm text-slate-500">{title}</p>
-
-      <p className="mt-1 text-2xl font-bold text-slate-950">
-        {value}
-      </p>
+      <p className="text-2xl font-extrabold text-[#3D4852]">{value}</p>
+      <span className="neu-inset-sm px-2.5 py-0.5 rounded-full text-[11px] font-bold text-[#000000] inline-block">
+        {note}
+      </span>
     </div>
   );
 }
@@ -464,17 +373,13 @@ function QuickLink({
   return (
     <Link
       href={href}
-      className="flex items-center justify-between py-3.5 hover:bg-slate-50"
+      className="neu-inset-sm hover:neu-btn w-full p-3.5 rounded-2xl flex items-center justify-between font-bold text-xs text-[#3D4852] transition-all"
     >
       <div className="flex items-center gap-3">
-        <span className="text-slate-500">{icon}</span>
-
-        <span className="text-sm font-medium text-slate-700">
-          {title}
-        </span>
+        <span className="text-[#000000]">{icon}</span>
+        <span className="font-bold text-[#3D4852]">{title}</span>
       </div>
-
-      <ChevronRight size={17} className="text-slate-400" />
+      <ChevronRight size={16} className="text-[#6B7280]" />
     </Link>
   );
 }
@@ -489,14 +394,10 @@ function Activity({
   time: string;
 }) {
   return (
-    <div className="rounded-xl bg-slate-50 p-4">
-      <p className="font-semibold text-slate-800">{title}</p>
-
-      <p className="mt-1 text-sm text-slate-500">
-        {description}
-      </p>
-
-      <p className="mt-2 text-xs text-slate-400">{time}</p>
+    <div className="neu-inset-deep p-5 rounded-2xl space-y-2">
+      <p className="font-bold text-xs text-[#3D4852]">{title}</p>
+      <p className="text-xs text-[#6B7280] leading-relaxed">{description}</p>
+      <p className="text-[11px] text-[#000000] font-mono font-bold pt-1">{time}</p>
     </div>
   );
 }

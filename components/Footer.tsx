@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   "Ride Booking",
@@ -23,72 +24,41 @@ const partners = [
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-
-        {/* Main Footer */}
+    <footer className="bg-[#E0E5EC] text-[#3D4852] pt-12 pb-16">
+      <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-
-          {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-600 text-xl font-bold">
-                I
+              <div className="neu-inset-deep flex h-12 w-12 items-center justify-center rounded-2xl overflow-hidden p-1">
+                <Image
+                  src="/logo.png"
+                  alt="Infurnus Logo"
+                  width={44}
+                  height={44}
+                  className="h-full w-full object-cover rounded-xl"
+                />
               </div>
-
-              <span className="text-xl font-bold tracking-wide">
+              <span className="font-display text-xl font-extrabold tracking-tight text-[#3D4852]">
                 INFURNUS
               </span>
             </Link>
-
-            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-400">
-              Your complete mobility and logistics platform for rides,
-              rentals, deliveries and business transportation solutions.
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-[#6B7280] font-sans">
+              Your complete tactile mobility and logistics platform for rides, rentals, deliveries and business transportation solutions.
             </p>
-
-            {/* Social */}
             <div className="mt-6 flex gap-3">
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold transition hover:bg-blue-600"
-              >
-                f
-              </a>
-
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold transition hover:bg-blue-600"
-              >
-                in
-              </a>
-
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold transition hover:bg-blue-600"
-              >
-                X
-              </a>
-
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-sm font-bold transition hover:bg-blue-600"
-              >
-                ▶
-              </a>
+              <a href="#" className="neu-btn h-11 w-11 p-0 flex items-center justify-center font-bold text-[#3D4852] text-sm">f</a>
+              <a href="#" className="neu-btn h-11 w-11 p-0 flex items-center justify-center font-bold text-[#3D4852] text-sm">in</a>
+              <a href="#" className="neu-btn h-11 w-11 p-0 flex items-center justify-center font-bold text-[#3D4852] text-sm">X</a>
+              <a href="#" className="neu-btn h-11 w-11 p-0 flex items-center justify-center font-bold text-[#3D4852] text-sm">▶</a>
             </div>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="font-semibold text-white">Services</h3>
-
-            <ul className="mt-5 space-y-3">
+            <h3 className="font-display font-bold text-[#3D4852]">Services</h3>
+            <ul className="mt-5 space-y-3 font-sans">
               {services.map((service) => (
                 <li key={service}>
-                  <Link
-                    href="/services"
-                    className="text-sm text-slate-400 transition hover:text-blue-400"
-                  >
+                  <Link href="/services" className="text-sm font-medium text-[#6B7280] transition-colors duration-200 hover:text-[#000000]">
                     {service}
                   </Link>
                 </li>
@@ -96,17 +66,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <h3 className="font-semibold text-white">Company</h3>
-
-            <ul className="mt-5 space-y-3">
+            <h3 className="font-display font-bold text-[#3D4852]">Company</h3>
+            <ul className="mt-5 space-y-3 font-sans">
               {company.map((item) => (
                 <li key={item}>
-                  <Link
-                    href="/about"
-                    className="text-sm text-slate-400 transition hover:text-blue-400"
-                  >
+                  <Link href="/about" className="text-sm font-medium text-[#6B7280] transition-colors duration-200 hover:text-[#000000]">
                     {item}
                   </Link>
                 </li>
@@ -114,72 +79,38 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Partners */}
           <div>
-            <h3 className="font-semibold text-white">Partner With Us</h3>
-
-            <ul className="mt-5 space-y-3">
+            <h3 className="font-display font-bold text-[#3D4852]">Partner With Us</h3>
+            <ul className="mt-5 space-y-3 font-sans">
               {partners.map((partner) => (
                 <li key={partner}>
-                  <Link
-                    href="/business"
-                    className="text-sm text-slate-400 transition hover:text-blue-400"
-                  >
+                  <Link href="/business" className="text-sm font-medium text-[#6B7280] transition-colors duration-200 hover:text-[#000000]">
                     {partner}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-
         </div>
 
-        {/* App Download */}
-        <div className="mt-14 rounded-2xl border border-slate-800 bg-slate-900 p-6 md:flex md:items-center md:justify-between">
+        <div className="mt-14 neu-extruded rounded-[32px] bg-[#E0E5EC] p-8 md:flex md:items-center md:justify-between">
           <div>
-            <h3 className="font-semibold">
-              Get the Infurnus App
-            </h3>
-
-            <p className="mt-1 text-sm text-slate-400">
-              Book rides and manage your deliveries from anywhere.
-            </p>
+            <h3 className="font-display text-lg font-bold text-[#3D4852]">Get the Infurnus App</h3>
+            <p className="mt-1 text-sm text-[#6B7280] font-sans">Book rides and manage your deliveries from anywhere.</p>
           </div>
-
-          <div className="mt-5 flex gap-3 md:mt-0">
-            <button className="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200">
-               App Store
-            </button>
-
-            <button className="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200">
-              ▶ Google Play
-            </button>
+          <div className="mt-6 flex flex-wrap gap-4 md:mt-0">
+            <button className="neu-btn neu-btn-primary px-6 py-3 text-sm font-bold"> App Store</button>
+            <button className="neu-btn neu-btn-primary px-6 py-3 text-sm font-bold">▶ Google Play</button>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-slate-800 pt-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} Infurnus. All rights reserved.
-          </p>
-
+        <div className="mt-12 pt-8 flex flex-col gap-4 border-t border-[#A3B1C6]/30 text-sm font-medium text-[#6B7280] md:flex-row md:items-center md:justify-between font-sans">
+          <p>© {new Date().getFullYear()} Infurnus. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link
-              href="/privacy"
-              className="transition hover:text-white"
-            >
-              Privacy Policy
-            </Link>
-
-            <Link
-              href="/terms"
-              className="transition hover:text-white"
-            >
-              Terms & Conditions
-            </Link>
+            <Link href="/privacy" className="transition hover:text-[#000000]">Privacy Policy</Link>
+            <Link href="/terms" className="transition hover:text-[#000000]">Terms & Conditions</Link>
           </div>
         </div>
-
       </div>
     </footer>
   );

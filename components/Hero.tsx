@@ -24,35 +24,24 @@ export default function Hero() {
   const [logisticsVehicle, setLogisticsVehicle] = useState("");
   const [logisticsLoad, setLogisticsLoad] = useState("");
 
-  // =========================================================
-  // CHANGED: SERVICE TAB
-  // =========================================================
   const changeService = (service: ServiceTab) => {
-    console.log("SERVICE CLICKED:", service);
-
     setActiveTab(service);
-
     setPickup("");
     setDrop("");
 
     if (service === "Ride") {
       setSchedule("Now");
     }
-
     if (service === "Rentals") {
       setRentalVehicle("");
       setRentalHours("4");
     }
-
     if (service === "Logistics") {
       setLogisticsVehicle("");
       setLogisticsLoad("");
     }
   };
 
-  // =========================================================
-  // RIDE
-  // =========================================================
   const findRide = () => {
     const cleanPickup = pickup.trim();
     const cleanDrop = drop.trim();
@@ -61,12 +50,10 @@ export default function Hero() {
       alert("Please enter your pickup location.");
       return;
     }
-
     if (!cleanDrop) {
       alert("Please enter your drop location.");
       return;
     }
-
     if (cleanPickup.toLowerCase() === cleanDrop.toLowerCase()) {
       alert("Pickup and drop locations cannot be the same.");
       return;
@@ -81,15 +68,11 @@ export default function Hero() {
     );
   };
 
-  // =========================================================
-  // RENTAL
-  // =========================================================
   const findRental = () => {
     if (!rentalVehicle) {
       alert("Please select a vehicle.");
       return;
     }
-
     if (!pickup.trim()) {
       alert("Please enter your pickup location.");
       return;
@@ -104,9 +87,6 @@ export default function Hero() {
     );
   };
 
-  // =========================================================
-  // LOGISTICS
-  // =========================================================
   const bookLogistics = () => {
     const cleanPickup = pickup.trim();
     const cleanDrop = drop.trim();
@@ -115,22 +95,18 @@ export default function Hero() {
       alert("Please enter your pickup location.");
       return;
     }
-
     if (!cleanDrop) {
       alert("Please enter your destination.");
       return;
     }
-
     if (!logisticsVehicle) {
       alert("Please select a logistics vehicle.");
       return;
     }
-
     if (!logisticsLoad) {
       alert("Please select the approximate load.");
       return;
     }
-
     if (cleanPickup.toLowerCase() === cleanDrop.toLowerCase()) {
       alert("Pickup and destination cannot be the same.");
       return;
@@ -143,423 +119,264 @@ export default function Hero() {
         cleanDrop
       )}&vehicle=${encodeURIComponent(
         logisticsVehicle
-      )}&load=${encodeURIComponent(
-        logisticsLoad
-      )}`
+      )}&load=${encodeURIComponent(logisticsLoad)}`
     );
   };
 
   return (
-    <section className="relative isolate min-h-[680px] overflow-hidden">
+    <section className="relative isolate min-h-[680px] overflow-hidden bg-[#E0E5EC] py-16 lg:py-24">
 
-      {/* =====================================================
-    CHANGED: RESPONSIVE HERO BACKGROUND IMAGE
-====================================================== */}
+      {/* BACKGROUND IMAGE OVERLAY */}
+      <picture className="pointer-events-none absolute inset-0 z-0  mix-blend-multiply">
+        <Image
+          src={heroPhone}
+          alt=""
+          fill
+          priority
+          className="object-cover lg:hidden"
+        />
+        <Image
+          src={heroDesktop}
+          alt=""
+          fill
+          priority
+          className="hidden h-full w-full object-cover lg:block"
+        />
+      </picture>
 
-<picture className="pointer-events-none absolute inset-0 z-0">
+      {/* MAIN CONTENT */}
+      <div className="relative z-10 mx-auto grid min-h-[600px] max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
 
-  {/* Mobile image */}
-  {/* Phone / Tablet */}
-  <Image
-    src={heroPhone}
-    alt=""
-    fill
-    priority
-    className="object-cover lg:hidden"
-  />
-
-  {/* Laptop / Desktop image */}
-  <Image
-    src={heroDesktop}
-    alt=""
-    fill
-    priority
-    className="hidden h-full w-full object-cover lg:block"
-  />
-
-</picture>
-
-{/* =====================================================
-    CHANGED: DARK OVERLAY
-====================================================== */}
-
-<div className="pointer-events-none absolute inset-0 z-[1] bg-slate-950/60" />
-
-      {/* =====================================================
-          MAIN CONTENT
-      ====================================================== */}
-
-      <div className="relative z-10 mx-auto grid min-h-[680px] max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
-
-        {/* =====================================================
-            LEFT
-        ====================================================== */}
-
+        {/* LEFT COLUMN */}
         <div className="relative z-50 w-full">
 
-          <span className="inline-block rounded-full bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-400">
-            All in one platform
+          <span className="inline-flex items-center gap-2 rounded-full px-5 py-2 bg-[#E0E5EC] text-xs font-bold uppercase tracking-wider text-[#000000]">
+            <span className="h-2 w-2 rounded-full bg-[#000000] animate-pulse"></span>
+            All In One Mobility Platform
           </span>
 
-          <h1 className="mt-6 text-5xl font-bold leading-tight text-white md:text-7xl">
+          <h1 className="mt-6 text-5xl font-extrabold leading-tight text-[#3D4852] font-display md:text-7xl">
             Your City.
             <br />
-
-            <span className="text-blue-500">
+            <span className="text-[#6c63ff]">
               Your Way.
             </span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-            Rides, Rentals, Logistics — all in one platform.
-            Move smarter, faster and further with Infurnus.
+          <p className="mt-6 max-w-xl text-lg leading-8 text-[#6B7280] font-medium">
+            Rides, Rentals, Logistics — all in one unified platform.
+            Move smarter, faster, and further with Infurnus.
           </p>
 
-          {/* =================================================
-              BOOKING CARD
-          ================================================== */}
+          {/* BOOKING CARD */}
+          <div className="relative z-[100] mt-10 w-full max-w-xl p-8 bg-[#E0E5EC]  border rounded-[32px]">
 
-          <div
-            className="relative z-[100] mt-10 w-full max-w-xl rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl"
-          >
-
-            {/* =================================================
-                TABS
-            ================================================== */}
-
-            <div className="relative z-[110] grid grid-cols-3 border-b border-slate-200">
-
-              {/* RIDE */}
-
+            {/* TAB SELECTOR */}
+            <div className="grid grid-cols-3 gap-2 p-1.5 neu-inset rounded-2xl">
               <button
                 type="button"
                 onClick={() => changeService("Ride")}
-                className={`relative z-[120] block min-h-[55px] w-full cursor-pointer select-none py-4 text-sm font-semibold transition-all duration-200 ${
-                  activeTab === "Ride"
-                    ? "text-blue-600"
-                    : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
-                }`}
+                className={`py-3 text-sm font-bold transition-all duration-300 rounded-xl ${activeTab === "Ride"
+                  ? "neu-btn text-[#000000]"
+                  : "text-[#6B7280] hover:text-[#3D4852]"
+                  }`}
               >
                 Ride
-
-                {activeTab === "Ride" && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600" />
-                )}
               </button>
-
-              {/* RENTALS */}
 
               <button
                 type="button"
                 onClick={() => changeService("Rentals")}
-                className={`relative z-[120] block min-h-[55px] w-full cursor-pointer select-none py-4 text-sm font-semibold transition-all duration-200 ${
-                  activeTab === "Rentals"
-                    ? "text-blue-600"
-                    : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
-                }`}
+                className={`py-3 text-sm font-bold transition-all duration-300 rounded-xl ${activeTab === "Rentals"
+                  ? "neu-btn text-[#000000]"
+                  : "text-[#6B7280] hover:text-[#3D4852]"
+                  }`}
               >
                 Rentals
-
-                {activeTab === "Rentals" && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600" />
-                )}
               </button>
-
-              {/* LOGISTICS */}
 
               <button
                 type="button"
                 onClick={() => changeService("Logistics")}
-                className={`relative z-[120] block min-h-[55px] w-full cursor-pointer select-none py-4 text-sm font-semibold transition-all duration-200 ${
-                  activeTab === "Logistics"
-                    ? "text-blue-600"
-                    : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
-                }`}
+                className={`py-3 text-sm font-bold transition-all duration-300 rounded-xl ${activeTab === "Logistics"
+                  ? "neu-btn text-[#000000]"
+                  : "text-[#6B7280] hover:text-[#3D4852]"
+                  }`}
               >
                 Logistics
-
-                {activeTab === "Logistics" && (
-                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600" />
-                )}
               </button>
-
             </div>
 
-            {/* =================================================
-                RIDE FORM
-            ================================================== */}
-
+            {/* RIDE FORM */}
             {activeTab === "Ride" && (
-              <div className="relative z-[105] space-y-3 pt-5">
-
-                <div className="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-100">
-
-                  <span className="h-3 w-3 shrink-0 rounded-full bg-blue-600" />
-
+              <div className="space-y-4 pt-6">
+                <div className="flex items-center gap-3 p-4 neu-inset rounded-2xl">
+                  <span className="h-3.5 w-3.5 shrink-0 rounded-full bg-[#000000] shadow-[0_0_8px_rgba(108,99,255,0.6)]" />
                   <input
                     type="text"
                     value={pickup}
                     onChange={(e) => setPickup(e.target.value)}
                     placeholder="Pickup location"
-                    className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-500"
+                    className="w-full bg-transparent text-[#3D4852] font-semibold outline-none placeholder:text-[#A0AEC0]"
                   />
-
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-100">
-
-                  <span className="h-3 w-3 shrink-0 rounded-full bg-red-500" />
-
+                <div className="flex items-center gap-3 p-4 neu-inset rounded-2xl">
+                  <span className="h-3.5 w-3.5 shrink-0 rounded-full bg-[#38B2AC] shadow-[0_0_8px_rgba(56,178,172,0.6)]" />
                   <input
                     type="text"
                     value={drop}
                     onChange={(e) => setDrop(e.target.value)}
                     placeholder="Drop location"
-                    className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-500"
+                    className="w-full bg-transparent text-[#3D4852] font-semibold outline-none placeholder:text-[#A0AEC0]"
                   />
-
                 </div>
 
                 <select
                   value={schedule}
                   onChange={(e) => setSchedule(e.target.value)}
-                  className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 text-slate-700 outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                  className="w-full cursor-pointer p-4 neu-inset rounded-2xl text-[#3D4852] font-semibold outline-none"
                 >
-                  <option value="Now">
-                    Now
-                  </option>
-
-                  <option value="Schedule for later">
-                    Schedule for later
-                  </option>
+                  <option value="Now">Now</option>
+                  <option value="Schedule for later">Schedule for later</option>
                 </select>
 
                 <button
                   type="button"
                   onClick={findRide}
-                  className="relative z-[120] w-full cursor-pointer rounded-xl bg-slate-950 py-4 font-semibold text-white transition hover:bg-blue-600 active:scale-[0.99]"
+                  className="w-full py-4 text-base font-bold neu-btn-primary shadow-lg active:scale-[0.99]"
                 >
                   Find a Ride →
                 </button>
-
               </div>
             )}
 
-            {/* =================================================
-                RENTALS FORM
-            ================================================== */}
-
+            {/* RENTALS FORM */}
             {activeTab === "Rentals" && (
-              <div className="relative z-[105] space-y-3 pt-5">
-
-                <div className="rounded-xl bg-blue-50 p-4">
-
-                  <p className="text-sm font-bold text-slate-900">
+              <div className="space-y-4 pt-6">
+                <div className="p-4 neu-inset rounded-2xl bg-[#E0E5EC]">
+                  <p className="text-sm font-bold text-[#3D4852]">
                     Rent a vehicle by the hour
                   </p>
-
-                  <p className="mt-1 text-xs leading-5 text-slate-500">
+                  <p className="mt-1 text-xs text-[#6B7280]">
                     Choose your vehicle and rental duration.
                   </p>
-
                 </div>
 
                 <select
                   value={rentalVehicle}
-                  onChange={(e) =>
-                    setRentalVehicle(e.target.value)
-                  }
-                  className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 text-slate-700 outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                  onChange={(e) => setRentalVehicle(e.target.value)}
+                  className="w-full cursor-pointer p-4 neu-inset rounded-2xl text-[#3D4852] font-semibold outline-none"
                 >
                   <option value="" disabled>
                     Select vehicle
                   </option>
-
-                  <option value="fortuner">
-                    Toyota Fortuner
-                  </option>
-
-                  <option value="thar">
-                    Mahindra Thar
-                  </option>
-
-                  <option value="premium-suv">
-                    Premium SUV
-                  </option>
+                  <option value="fortuner">Toyota Fortuner</option>
+                  <option value="thar">Mahindra Thar</option>
+                  <option value="premium-suv">Premium SUV</option>
                 </select>
 
-                <div className="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-100">
-
-                  <span className="h-3 w-3 shrink-0 rounded-full bg-blue-600" />
-
+                <div className="flex items-center gap-3 p-4 neu-inset rounded-2xl">
+                  <span className="h-3.5 w-3.5 shrink-0 rounded-full bg-[#000000]" />
                   <input
                     type="text"
                     value={pickup}
                     onChange={(e) => setPickup(e.target.value)}
                     placeholder="Pickup location"
-                    className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-500"
+                    className="w-full bg-transparent text-[#3D4852] font-semibold outline-none placeholder:text-[#A0AEC0]"
                   />
-
                 </div>
 
                 <select
                   value={rentalHours}
-                  onChange={(e) =>
-                    setRentalHours(e.target.value)
-                  }
-                  className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 text-slate-700 outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                  onChange={(e) => setRentalHours(e.target.value)}
+                  className="w-full cursor-pointer p-4 neu-inset rounded-2xl text-[#3D4852] font-semibold outline-none"
                 >
-                  <option value="2">
-                    2 Hours
-                  </option>
-
-                  <option value="4">
-                    4 Hours
-                  </option>
-
-                  <option value="6">
-                    6 Hours
-                  </option>
-
-                  <option value="8">
-                    8 Hours
-                  </option>
-
-                  <option value="12">
-                    12 Hours
-                  </option>
+                  <option value="2">2 Hours</option>
+                  <option value="4">4 Hours</option>
+                  <option value="6">6 Hours</option>
+                  <option value="8">8 Hours</option>
+                  <option value="12">12 Hours</option>
                 </select>
 
                 <button
                   type="button"
                   onClick={findRental}
-                  className="relative z-[120] w-full cursor-pointer rounded-xl bg-slate-950 py-4 font-semibold text-white transition hover:bg-blue-600 active:scale-[0.99]"
+                  className="w-full py-4 text-base font-bold neu-btn-primary shadow-lg active:scale-[0.99]"
                 >
                   Find a Vehicle →
                 </button>
-
               </div>
             )}
 
-            {/* =================================================
-                LOGISTICS FORM
-            ================================================== */}
-
+            {/* LOGISTICS FORM */}
             {activeTab === "Logistics" && (
-              <div className="relative z-[105] space-y-3 pt-5">
-
-                <div className="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-100">
-
-                  <span className="h-3 w-3 shrink-0 rounded-full bg-blue-600" />
-
+              <div className="space-y-4 pt-6">
+                <div className="flex items-center gap-3 p-4 neu-inset rounded-2xl">
+                  <span className="h-3.5 w-3.5 shrink-0 rounded-full bg-[#000000]" />
                   <input
                     type="text"
                     value={pickup}
                     onChange={(e) => setPickup(e.target.value)}
                     placeholder="Pickup location"
-                    className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-500"
+                    className="w-full bg-transparent text-[#3D4852] font-semibold outline-none placeholder:text-[#A0AEC0]"
                   />
-
                 </div>
 
-                <div className="flex items-center gap-3 rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 focus-within:border-blue-500 focus-within:bg-white focus-within:ring-2 focus-within:ring-blue-100">
-
-                  <span className="h-3 w-3 shrink-0 rounded-full bg-red-500" />
-
+                <div className="flex items-center gap-3 p-4 neu-inset rounded-2xl">
+                  <span className="h-3.5 w-3.5 shrink-0 rounded-full bg-[#38B2AC]" />
                   <input
                     type="text"
                     value={drop}
                     onChange={(e) => setDrop(e.target.value)}
                     placeholder="Destination"
-                    className="w-full bg-transparent text-slate-900 outline-none placeholder:text-slate-500"
+                    className="w-full bg-transparent text-[#3D4852] font-semibold outline-none placeholder:text-[#A0AEC0]"
                   />
-
                 </div>
 
                 <select
                   value={logisticsVehicle}
-                  onChange={(e) =>
-                    setLogisticsVehicle(e.target.value)
-                  }
-                  className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 text-slate-700 outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                  onChange={(e) => setLogisticsVehicle(e.target.value)}
+                  className="w-full cursor-pointer p-4 neu-inset rounded-2xl text-[#3D4852] font-semibold outline-none"
                 >
                   <option value="" disabled>
                     Select logistics vehicle
                   </option>
-
-                  <option value="mini-truck">
-                    Mini Truck
-                  </option>
-
-                  <option value="pickup">
-                    Pickup
-                  </option>
-
-                  <option value="tata-ace">
-                    Tata Ace
-                  </option>
-
-                  <option value="delivery-vehicle">
-                    Delivery Vehicle
-                  </option>
-
-                  <option value="large-truck">
-                    Large Truck
-                  </option>
+                  <option value="mini-truck">Mini Truck</option>
+                  <option value="pickup">Pickup</option>
+                  <option value="tata-ace">Tata Ace</option>
+                  <option value="delivery-vehicle">Delivery Vehicle</option>
+                  <option value="large-truck">Large Truck</option>
                 </select>
 
                 <select
                   value={logisticsLoad}
-                  onChange={(e) =>
-                    setLogisticsLoad(e.target.value)
-                  }
-                  className="w-full cursor-pointer rounded-xl border border-slate-300 bg-slate-50 px-4 py-4 text-slate-700 outline-none focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                  onChange={(e) => setLogisticsLoad(e.target.value)}
+                  className="w-full cursor-pointer p-4 neu-inset rounded-2xl text-[#3D4852] font-semibold outline-none"
                 >
                   <option value="" disabled>
                     Select approximate load
                   </option>
-
-                  <option value="up-to-100">
-                    Up to 100 kg
-                  </option>
-
-                  <option value="100-300">
-                    100 – 300 kg
-                  </option>
-
-                  <option value="300-500">
-                    300 – 500 kg
-                  </option>
-
-                  <option value="500-1000">
-                    500 – 1000 kg
-                  </option>
-
-                  <option value="above-1000">
-                    Above 1000 kg
-                  </option>
+                  <option value="up-to-100">Up to 100 kg</option>
+                  <option value="100-300">100 – 300 kg</option>
+                  <option value="300-500">300 – 500 kg</option>
+                  <option value="500-1000">500 – 1000 kg</option>
+                  <option value="above-1000">Above 1000 kg</option>
                 </select>
 
                 <button
                   type="button"
                   onClick={bookLogistics}
-                  className="relative z-[120] w-full cursor-pointer rounded-xl bg-slate-950 py-4 font-semibold text-white transition hover:bg-blue-600 active:scale-[0.99]"
+                  className="w-full py-4 text-base font-bold neu-btn-primary shadow-lg active:scale-[0.99]"
                 >
                   Book Logistics →
                 </button>
-
               </div>
             )}
-
           </div>
         </div>
 
-        {/* =====================================================
-            RIGHT VISUAL
-            CHANGED: pointer-events-none
-        ====================================================== */}
 
-        
 
       </div>
     </section>

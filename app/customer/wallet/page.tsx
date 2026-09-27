@@ -487,57 +487,40 @@ export default function WalletPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50">
-        <div className="text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-blue-600 border-t-transparent" />
-
-          <p className="mt-4 text-sm text-slate-500">
-            Loading wallet...
-          </p>
+      <main className="flex min-h-screen items-center justify-center bg-[#E0E5EC] p-4 text-[#3D4852]">
+        <div className="neu-extruded p-10 rounded-[32px] text-center space-y-4">
+          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-[#A3B1C6] border-t-[#000000]" />
+          <p className="text-sm font-bold text-[#6B7280]">Loading wallet & payment records...</p>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-5xl space-y-8">
+        
+        {/* Header Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8">
+          <div className="space-y-1">
+            <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+              CUSTOMER WALLET & PAYMENTS
+            </span>
+            <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3D4852]">
+              Digital Wallet & Balance
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
+              Instant top-ups, transaction history, and payment gateway options.
+            </p>
+          </div>
+
           <Link
             href="/customer"
-            className="flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-blue-600"
+            className="neu-btn px-4 py-3 text-xs font-bold flex items-center gap-2 w-fit"
           >
-            <ArrowLeft size={19} />
-            Dashboard
+            <ArrowLeft size={16} />
+            <span>Dashboard</span>
           </Link>
-
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 font-bold text-white">
-              I
-            </div>
-
-            <span className="font-bold text-slate-900">
-              INFURNUS
-            </span>
-          </div>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-5xl px-6 py-8">
-        {/* Heading */}
-        <div>
-          <span className="rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
-            Payments
-          </span>
-
-          <h1 className="mt-5 text-3xl font-bold text-slate-900 md:text-4xl">
-            Wallet & Payments
-          </h1>
-
-          <p className="mt-2 text-slate-500">
-            Manage your wallet, payment methods and transactions.
-          </p>
         </div>
 
         {/* ====================================================

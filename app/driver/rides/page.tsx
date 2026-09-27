@@ -10,6 +10,7 @@ import {
   MapPin,
   Search,
   Star,
+  Navigation,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -91,43 +92,33 @@ export default function DriverRidesPage() {
   });
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#E0E5EC] py-10 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-7xl space-y-8">
+        
+        {/* Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <span className="neu-inset-sm px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#000000] inline-block">
+              Trip History Terminal
+            </span>
+            <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-[#3D4852]">
+              Driver Ride History
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280] max-w-2xl">
+              Inspect past completed rides, customer ratings, fare earnings, and cancelled trip logs.
+            </p>
+          </div>
+
           <Link
             href="/driver"
-            className="mr-4 rounded-xl p-2 text-slate-600 hover:bg-slate-100"
+            className="neu-btn px-6 py-3.5 rounded-2xl text-xs font-bold text-[#3D4852] inline-flex items-center gap-2 self-start sm:self-auto"
           >
-            <ArrowLeft size={21} />
+            <ArrowLeft size={16} />
+            <span>Dashboard</span>
           </Link>
-
-          <Link href="/" className="text-xl font-extrabold">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-
-          <span className="ml-auto text-sm font-semibold text-slate-600">
-            Ride History
-          </span>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* Heading */}
-        <div className="mb-6">
-          <p className="text-sm text-slate-500">Driver account</p>
-
-          <h1 className="mt-1 text-2xl font-bold text-slate-950">
-            Ride History
-          </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            View your completed and cancelled rides.
-          </p>
         </div>
 
-        {/* Summary */}
+        {/* Summary Stats Grid */}
         <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <SummaryCard
             icon={<Car size={20} />}
@@ -144,29 +135,29 @@ export default function DriverRidesPage() {
           <SummaryCard
             icon={<Star size={20} />}
             label="Average Rating"
-            value="4.8"
+            value="4.8 ★"
           />
 
           <SummaryCard
             icon={<CalendarDays size={20} />}
             label="This Month"
-            value="58"
+            value="58 Trips"
           />
         </section>
 
-        {/* Filters */}
-        <section className="mt-6 rounded-2xl bg-white p-4 shadow-sm">
+        {/* Filter and Search Bar */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 space-y-4">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            {/* Tabs */}
-            <div className="flex gap-2 overflow-x-auto">
+            {/* Filter Tabs */}
+            <div className="flex gap-3 overflow-x-auto pb-1 sm:pb-0">
               {["All", "Completed", "Cancelled"].map((item) => (
                 <button
                   key={item}
                   onClick={() => setFilter(item)}
-                  className={`whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold ${
+                  className={`px-5 py-3 rounded-2xl text-xs font-bold transition-all ${
                     filter === item
-                      ? "bg-blue-600 text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      ? "neu-inset text-[#000000] border border-black/10"
+                      : "neu-btn text-[#6B7280]"
                   }`}
                 >
                   {item}
@@ -174,159 +165,99 @@ export default function DriverRidesPage() {
               ))}
             </div>
 
-            {/* Search */}
-            <div className="relative w-full lg:w-72">
-              <Search
-                size={18}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
-              />
-
+            {/* Search Input */}
+            <div className="relative w-full lg:w-80">
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search rides..."
-                className="w-full rounded-xl border border-slate-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-blue-500"
+                placeholder="Search by customer or route..."
+                className="neu-input w-full pl-11 pr-4 py-3.5 rounded-2xl text-xs text-[#3D4852] outline-none placeholder:text-[#9CA3AF]"
+              />
+              <Search
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[#000000]"
               />
             </div>
           </div>
         </section>
 
-        {/* Ride List */}
-        <section className="mt-6 space-y-4">
+        {/* Ride History Cards List */}
+        <section className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 space-y-4">
           {filteredRides.length === 0 ? (
-            <div className="rounded-2xl bg-white p-10 text-center shadow-sm">
-              <Car
-                size={35}
-                className="mx-auto text-slate-300"
-              />
-
-              <h2 className="mt-4 font-bold text-slate-800">
-                No rides found
-              </h2>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Try changing your filter or search.
-              </p>
+            <div className="neu-inset-deep rounded-2xl p-10 text-center space-y-3">
+              <div className="neu-extruded inline-flex p-4 rounded-2xl text-[#000000]">
+                <Car size={32} />
+              </div>
+              <p className="font-bold text-[#3D4852]">No Rides Found</p>
+              <p className="text-xs text-[#6B7280]">Try adjusting your search criteria or status filter.</p>
             </div>
           ) : (
             filteredRides.map((ride) => (
               <div
                 key={ride.id}
-                className="rounded-2xl bg-white p-5 shadow-sm"
+                className="neu-inset-deep rounded-2xl p-5 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
               >
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-center">
-                  {/* Customer */}
-                  <div className="flex min-w-[210px] items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
-                      {ride.customer
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
+                {/* Customer Details */}
+                <div className="flex items-center gap-4 min-w-[200px]">
+                  <div className="neu-extruded h-12 w-12 rounded-2xl flex items-center justify-center font-extrabold text-sm text-[#000000]">
+                    {ride.customer
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
 
+                  <div>
+                    <h3 className="font-extrabold text-sm text-[#3D4852]">
+                      {ride.customer}
+                    </h3>
+                    <p className="text-xs text-[#6B7280] mt-0.5">
+                      {ride.date} • {ride.time}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Route Info */}
+                <div className="neu-inset-sm p-4 rounded-xl flex-1 max-w-md space-y-2">
+                  <div className="flex items-center gap-3">
+                    <MapPin size={16} className="text-[#000000] shrink-0" />
                     <div>
-                      <p className="font-semibold text-slate-900">
-                        {ride.customer}
+                      <p className="text-[10px] font-bold uppercase text-[#6B7280]">Pickup</p>
+                      <p className="text-xs font-semibold text-[#3D4852]">{ride.pickup}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 pt-2 border-t border-black/5">
+                    <Navigation size={16} className="text-[#000000] shrink-0" />
+                    <div>
+                      <p className="text-[10px] font-bold uppercase text-[#6B7280]">Destination</p>
+                      <p className="text-xs font-semibold text-[#3D4852]">{ride.destination}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Fare & Earnings */}
+                <div className="flex items-center justify-between lg:justify-end gap-6 min-w-[180px]">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase text-[#6B7280]">Customer Fare</p>
+                    <p className="text-base font-extrabold text-[#3D4852]">{ride.fare}</p>
+                    <p className="text-xs font-bold text-[#000000] mt-0.5">Earned {ride.earning}</p>
+                  </div>
+
+                  <div className="text-right">
+                    <span className="neu-inset-sm px-3 py-1 rounded-full text-xs font-bold text-[#000000]">
+                      {ride.status}
+                    </span>
+                    {ride.rating !== "-" && (
+                      <p className="text-xs font-bold text-[#3D4852] mt-1.5">
+                        {ride.rating} ★ Rated
                       </p>
-
-                      <p className="text-xs text-slate-500">
-                        {ride.date} • {ride.time}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Route */}
-                  <div className="flex flex-1 gap-3">
-                    <div className="flex flex-col items-center pt-1">
-                      <span className="h-2.5 w-2.5 rounded-full bg-blue-600" />
-
-                      <span className="h-8 border-l border-dashed border-slate-300" />
-
-                      <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-                    </div>
-
-                    <div className="space-y-3 text-sm">
-                      <div>
-                        <p className="text-xs text-slate-400">
-                          Pickup
-                        </p>
-
-                        <p className="font-medium text-slate-800">
-                          {ride.pickup}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="text-xs text-slate-400">
-                          Destination
-                        </p>
-
-                        <p className="font-medium text-slate-800">
-                          {ride.destination}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Fare */}
-                  <div className="min-w-[130px] lg:text-right">
-                    <p className="text-xs text-slate-500">
-                      Customer Fare
-                    </p>
-
-                    <p className="text-lg font-bold text-slate-950">
-                      {ride.fare}
-                    </p>
-
-                    <p className="text-xs text-green-600">
-                      You earned {ride.earning}
-                    </p>
-                  </div>
-
-                  {/* Status */}
-                  <div className="flex items-center justify-between gap-4 lg:min-w-[130px] lg:justify-end">
-                    <div className="lg:text-right">
-                      <span
-                        className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
-                          ride.status === "Completed"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
-                        }`}
-                      >
-                        {ride.status}
-                      </span>
-
-                      {ride.rating !== "-" && (
-                        <div className="mt-2 flex items-center gap-1 text-xs text-slate-500 lg:justify-end">
-                          <Star
-                            size={13}
-                            className="fill-yellow-400 text-yellow-400"
-                          />
-                          {ride.rating}
-                        </div>
-                      )}
-                    </div>
-
-                    <button className="rounded-xl p-2 text-slate-400 hover:bg-slate-100 hover:text-blue-600">
-                      <ChevronRight size={19} />
-                    </button>
+                    )}
                   </div>
                 </div>
               </div>
             ))
           )}
         </section>
-
-        {/* Back */}
-        <div className="mt-6">
-          <Link
-            href="/driver"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
-          >
-            <ArrowLeft size={16} />
-            Back to Driver Dashboard
-          </Link>
-        </div>
       </div>
     </main>
   );
@@ -342,16 +273,16 @@ function SummaryCard({
   value: string;
 }) {
   return (
-    <div className="rounded-2xl bg-white p-5 shadow-sm">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-        {icon}
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
+          {label}
+        </p>
+        <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+          {icon}
+        </div>
       </div>
-
-      <p className="mt-4 text-sm text-slate-500">{label}</p>
-
-      <p className="mt-1 text-2xl font-bold text-slate-950">
-        {value}
-      </p>
+      <p className="text-2xl font-extrabold text-[#3D4852]">{value}</p>
     </div>
   );
 }

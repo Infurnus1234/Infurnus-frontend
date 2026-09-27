@@ -8,12 +8,11 @@ import {
   Bell,
   Lock,
   CreditCard,
-  MapPin,
   ShieldCheck,
-  HelpCircle,
   LogOut,
   ChevronRight,
   Save,
+  CheckCircle,
 } from "lucide-react";
 
 export default function ProviderSettings() {
@@ -24,299 +23,161 @@ export default function ProviderSettings() {
 
   const handleSave = () => {
     setSaved(true);
-
     setTimeout(() => {
       setSaved(false);
     }, 2000);
   };
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* Header */}
-      <header className="sticky top-0 z-20 border-b bg-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-6">
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-5xl space-y-6">
+        
+        {/* Header Bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8">
+          <div className="space-y-1">
+            <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+              PROVIDER DASHBOARD
+            </span>
+            <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3D4852]">
+              Settings & Account Preferences
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
+              Manage profile info, security settings, dispatch alerts, and bank details.
+            </p>
+          </div>
+
           <div className="flex items-center gap-3">
             <Link
               href="/provider"
-              className="rounded-lg p-2 hover:bg-slate-100"
+              className="neu-btn px-4 py-3 text-xs font-bold flex items-center gap-2 w-fit"
             >
-              <ArrowLeft size={20} />
+              <ArrowLeft size={16} />
+              <span>Back</span>
             </Link>
-
-            <div>
-              <h1 className="text-xl font-bold text-[#07111F]">
-                Settings & Profile
-              </h1>
-              <p className="text-sm text-slate-500">
-                Manage your provider account
-              </p>
-            </div>
+            <button
+              onClick={handleSave}
+              className="neu-btn neu-btn-primary px-5 py-3 text-xs font-bold flex items-center gap-2"
+            >
+              <Save size={16} />
+              <span>{saved ? "Saved!" : "Save Changes"}</span>
+            </button>
           </div>
-
-          <button
-            onClick={handleSave}
-            className="flex items-center gap-2 rounded-xl bg-[#1769E0] px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
-          >
-            <Save size={17} />
-            Save Changes
-          </button>
         </div>
-      </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-6 md:px-6">
-        {/* Profile */}
-        <section className="mb-6 rounded-2xl border bg-white p-6 shadow-sm">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-xl font-bold text-[#1769E0]">
+        {saved && (
+          <div className="neu-inset-deep p-4 rounded-2xl flex items-center gap-2 text-xs font-bold text-[#000000]">
+            <CheckCircle size={16} />
+            Your provider settings have been saved successfully.
+          </div>
+        )}
+
+        {/* Profile Info */}
+        <div className="neu-extruded rounded-[32px] bg-[#E0E5EC] p-8 space-y-6">
+          <div className="flex items-center gap-4">
+            <div className="neu-inset-deep flex h-16 w-16 items-center justify-center rounded-2xl text-[#000000] font-extrabold text-xl">
               VR
             </div>
-
             <div>
-              <h2 className="text-xl font-bold text-[#07111F]">
-                Vikram Rao
-              </h2>
-              <p className="text-sm text-slate-500">
-                Driver + Fleet Owner
-              </p>
-
-              <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
-                <ShieldCheck size={14} />
-                Verified Provider
+              <h2 className="font-display text-xl font-bold text-[#3D4852]">Vikram Rao</h2>
+              <p className="text-xs text-[#6B7280]">Driver + Fleet Owner</p>
+              <span className="neu-inset-sm px-3 py-1 rounded-full text-[11px] font-bold text-[#000000] inline-flex items-center gap-1 mt-2">
+                <ShieldCheck size={14} /> Verified Partner
               </span>
             </div>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-black/5">
             <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Full Name
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#3D4852] mb-2">
+                Full Legal Name
               </label>
               <input
                 type="text"
                 defaultValue="Vikram Rao"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-[#1769E0]"
+                className="neu-input w-full px-4 py-3.5 rounded-2xl text-sm text-[#3D4852] outline-none"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#3D4852] mb-2">
                 Mobile Number
               </label>
               <input
                 type="text"
                 defaultValue="+91 98765 43210"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-[#1769E0]"
+                className="neu-input w-full px-4 py-3.5 rounded-2xl text-sm text-[#3D4852] outline-none"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Email
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#3D4852] mb-2">
+                Email Address
               </label>
               <input
                 type="email"
                 defaultValue="vikram@example.com"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-[#1769E0]"
+                className="neu-input w-full px-4 py-3.5 rounded-2xl text-sm text-[#3D4852] outline-none"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                City
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#3D4852] mb-2">
+                Primary Operating City
               </label>
               <input
                 type="text"
-                defaultValue="Patna"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-[#1769E0]"
+                defaultValue="Mumbai"
+                className="neu-input w-full px-4 py-3.5 rounded-2xl text-sm text-[#3D4852] outline-none"
               />
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Account Settings */}
-        <section className="mb-6 rounded-2xl border bg-white shadow-sm">
-          <div className="border-b p-6">
-            <h2 className="text-lg font-bold text-[#07111F]">
-              Account Settings
-            </h2>
-            <p className="mt-1 text-sm text-slate-500">
-              Manage your account preferences
-            </p>
+        {/* Dispatch Preferences Toggle */}
+        <div className="neu-extruded rounded-[32px] bg-[#E0E5EC] p-8 space-y-4">
+          <h2 className="font-display text-xl font-bold text-[#3D4852]">Notification & Dispatch Alerts</h2>
+
+          <div className="space-y-4 pt-2">
+            <div className="neu-inset-deep p-4 rounded-2xl flex items-center justify-between">
+              <div>
+                <p className="font-bold text-xs text-[#3D4852]">New Trip Dispatch Alerts</p>
+                <p className="text-[11px] text-[#6B7280]">Receive instant audio notifications for incoming customer bookings.</p>
+              </div>
+              <button
+                onClick={() => setRideAlerts(!rideAlerts)}
+                className={`w-12 h-6 rounded-full transition-colors ${rideAlerts ? "bg-[#000000]" : "bg-black/20"} relative p-1`}
+              >
+                <span className={`block w-4 h-4 rounded-full bg-white transition-transform ${rideAlerts ? "translate-x-6" : "translate-x-0"}`} />
+              </button>
+            </div>
+
+            <div className="neu-inset-deep p-4 rounded-2xl flex items-center justify-between">
+              <div>
+                <p className="font-bold text-xs text-[#3D4852]">SMS & Email Statements</p>
+                <p className="text-[11px] text-[#6B7280]">Get daily summary reports of earnings and completed trips.</p>
+              </div>
+              <button
+                onClick={() => setNotifications(!notifications)}
+                className={`w-12 h-6 rounded-full transition-colors ${notifications ? "bg-[#000000]" : "bg-black/20"} relative p-1`}
+              >
+                <span className={`block w-4 h-4 rounded-full bg-white transition-transform ${notifications ? "translate-x-6" : "translate-x-0"}`} />
+              </button>
+            </div>
           </div>
+        </div>
 
-          <div className="divide-y">
-            <SettingRow
-              icon={<User size={19} />}
-              title="Personal Information"
-              description="Update your name, phone and email"
-            />
+        {/* Danger zone / logout */}
+        <div className="pt-2 flex justify-end">
+          <Link
+            href="/login"
+            className="neu-btn px-6 py-3 rounded-2xl text-xs font-bold text-red-600 flex items-center gap-2"
+          >
+            <LogOut size={16} />
+            <span>Sign Out of Provider Account</span>
+          </Link>
+        </div>
 
-            <SettingRow
-              icon={<Lock size={19} />}
-              title="Password & Security"
-              description="Change password and security settings"
-            />
-
-            <SettingRow
-              icon={<CreditCard size={19} />}
-              title="Bank & Payment Details"
-              description="Manage bank account and payout information"
-            />
-
-            <SettingRow
-              icon={<MapPin size={19} />}
-              title="Service Area"
-              description="Manage your operating locations"
-            />
-          </div>
-        </section>
-
-        {/* Notification Settings */}
-        <section className="mb-6 rounded-2xl border bg-white shadow-sm">
-          <div className="border-b p-6">
-            <h2 className="text-lg font-bold text-[#07111F]">
-              Notifications
-            </h2>
-            <p className="mt-1 text-sm text-slate-500">
-              Choose what notifications you receive
-            </p>
-          </div>
-
-          <div className="divide-y">
-            <ToggleRow
-              icon={<Bell size={19} />}
-              title="Push Notifications"
-              description="Receive important account notifications"
-              enabled={notifications}
-              setEnabled={setNotifications}
-            />
-
-            <ToggleRow
-              icon={<Bell size={19} />}
-              title="Trip & Booking Alerts"
-              description="Get notified about new trip requests"
-              enabled={rideAlerts}
-              setEnabled={setRideAlerts}
-            />
-
-            <ToggleRow
-              icon={<MapPin size={19} />}
-              title="Location Access"
-              description="Allow location access while online"
-              enabled={location}
-              setEnabled={setLocation}
-            />
-          </div>
-        </section>
-
-        {/* Other */}
-        <section className="mb-6 rounded-2xl border bg-white shadow-sm">
-          <div className="divide-y">
-            <SettingRow
-              icon={<ShieldCheck size={19} />}
-              title="Privacy & Security"
-              description="Manage privacy and security preferences"
-            />
-
-            <SettingRow
-              icon={<HelpCircle size={19} />}
-              title="Help & Support"
-              description="Get help with your provider account"
-              href="/driver/support"
-            />
-          </div>
-        </section>
-
-        {/* Logout */}
-        <button
-          onClick={() => alert("Logout demo")}
-          className="flex w-full items-center justify-center gap-2 rounded-xl border border-red-200 bg-white px-5 py-3 font-semibold text-red-600 hover:bg-red-50"
-        >
-          <LogOut size={18} />
-          Logout
-        </button>
-
-        <p className="mt-6 text-center text-xs text-slate-400">
-          Infurnus Provider App • Demo Version
-        </p>
       </div>
     </main>
-  );
-}
-
-function SettingRow({
-  icon,
-  title,
-  description,
-  href,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  href?: string;
-}) {
-  const content = (
-    <div className="flex items-center justify-between p-5 hover:bg-slate-50">
-      <div className="flex items-center gap-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#1769E0]">
-          {icon}
-        </div>
-
-        <div>
-          <h3 className="font-semibold text-[#07111F]">{title}</h3>
-          <p className="text-sm text-slate-500">{description}</p>
-        </div>
-      </div>
-
-      <ChevronRight size={19} className="text-slate-400" />
-    </div>
-  );
-
-  if (href) {
-    return <Link href={href}>{content}</Link>;
-  }
-
-  return <button className="w-full text-left">{content}</button>;
-}
-
-function ToggleRow({
-  icon,
-  title,
-  description,
-  enabled,
-  setEnabled,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  enabled: boolean;
-  setEnabled: (value: boolean) => void;
-}) {
-  return (
-    <div className="flex items-center justify-between p-5">
-      <div className="flex items-center gap-4">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-[#1769E0]">
-          {icon}
-        </div>
-
-        <div>
-          <h3 className="font-semibold text-[#07111F]">{title}</h3>
-          <p className="text-sm text-slate-500">{description}</p>
-        </div>
-      </div>
-
-      <button
-        onClick={() => setEnabled(!enabled)}
-        className={`relative h-6 w-11 rounded-full transition ${
-          enabled ? "bg-[#1769E0]" : "bg-slate-300"
-        }`}
-      >
-        <span
-          className={`absolute top-1 h-4 w-4 rounded-full bg-white transition ${
-            enabled ? "left-6" : "left-1"
-          }`}
-        />
-      </button>
-    </div>
   );
 }

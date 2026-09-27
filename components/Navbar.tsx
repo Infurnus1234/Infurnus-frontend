@@ -1,175 +1,151 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  // =========================================================
-  // CHANGED: Close mobile menu whenever a navigation item
-  // is clicked.
-  // =========================================================
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 bg-[#E0E5EC]/90 backdrop-blur-md transition-all duration-300">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
         {/* LOGO */}
-        <Link
-          href="/"
-          onClick={closeMenu}
-          className="text-xl font-extrabold tracking-tight"
-        >
-          <span className="text-slate-950">INFUR</span>
-          <span className="text-blue-600">NUS</span>
+        <Link href="/" className="flex items-center gap-3 group focus:outline-none">
+          <div className="neu-inset-deep flex h-11 w-11 items-center justify-center rounded-2xl overflow-hidden p-1 transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src="/logo.png"
+              alt="Infurnus Logo"
+              width={40}
+              height={40}
+              className="h-full w-full object-cover rounded-xl"
+            />
+          </div>
+          <span className="font-display text-xl font-extrabold tracking-tight text-[#3D4852]">
+            INFURNUS
+          </span>
         </Link>
 
-        {/* DESKTOP NAVIGATION */}
-        <nav className="hidden items-center gap-7 md:flex">
-
-          {/* CHANGED: Services now opens /services */}
-          <Link href="/" className="text-sm font-medium text-slate-700 hover:text-blue-600" > Home </Link>
+        {/* DESKTOP NAV LINKS CONTAINER */}
+        <nav className="hidden md:flex items-center neu-inset-sm px-6 py-2 rounded-full space-x-6">
+          <Link
+            href="/"
+            className="text-sm font-semibold text-[#3D4852] transition-colors duration-200 hover:text-[#000000]"
+          >
+            Home
+          </Link>
           <Link
             href="/services"
-            className="text-sm font-medium text-slate-700 transition hover:text-blue-600"
+            className="text-sm font-semibold text-[#6B7280] transition-colors duration-200 hover:text-[#000000]"
           >
             Services
           </Link>
-
-          {/* CHANGED: For Business now opens /business */}
-          <Link
-            href="/business"
-            className="text-sm font-medium text-slate-700 transition hover:text-blue-600"
-          >
-            For Business
-          </Link>
-
-          {/* CHANGED: About now opens /about */}
           <Link
             href="/about"
-            className="text-sm font-medium text-slate-700 transition hover:text-blue-600"
+            className="text-sm font-semibold text-[#6B7280] transition-colors duration-200 hover:text-[#000000]"
           >
-            About
+            About Us
           </Link>
-
-          {/* CHANGED: Support now opens /support */}
+          <Link
+            href="/vendor"
+            className="text-sm font-semibold text-[#6B7280] transition-colors duration-200 hover:text-[#000000]"
+          >
+            Business
+          </Link>
           <Link
             href="/support"
-            className="text-sm font-medium text-slate-700 transition hover:text-blue-600"
+            className="text-sm font-semibold text-[#6B7280] transition-colors duration-200 hover:text-[#000000]"
           >
             Support
           </Link>
         </nav>
 
-        {/* DESKTOP ACTIONS */}
-        <div className="hidden items-center gap-3 md:flex">
-
+        {/* DESKTOP RIGHT ACTIONS */}
+        <div className="hidden md:flex items-center space-x-4">
           <Link
             href="/login"
-            className="px-3 py-2 text-sm font-semibold text-slate-700 transition hover:text-blue-600"
+            className="neu-btn px-5 py-2.5 text-xs font-bold text-[#3D4852]"
           >
             Login
           </Link>
-
           <Link
-            href="/provider/register"
-            className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+            href="/register"
+            className="neu-btn neu-btn-primary px-5 py-2.5 text-xs font-bold"
           >
             Become a Provider
           </Link>
         </div>
 
-        {/* MOBILE MENU BUTTON */}
-        <button
-          type="button"
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="rounded-xl p-2 text-slate-700 transition hover:bg-slate-100 md:hidden"
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? <X size={23} /> : <Menu size={23} />}
-        </button>
+        {/* MOBILE MENU HAMBURGER BUTTON */}
+        <div className="md:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="neu-btn p-2.5 text-[#3D4852] focus:outline-none"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
-      {/* =====================================================
-          MOBILE MENU
-          ===================================================== */}
-      {menuOpen && (
-        <div className="border-t border-slate-200 bg-white px-4 py-5 shadow-sm md:hidden">
+      {/* MOBILE DROPDOWN MENU */}
+      {mobileMenuOpen && (
+        <div className="md:hidden neu-extruded mx-4 mb-4 rounded-3xl bg-[#E0E5EC] p-6 space-y-4">
+          <Link
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-[#3D4852] py-2 border-b border-[#A3B1C6]/20"
+          >
+            Home
+          </Link>
+          <Link
+            href="/services"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-[#6B7280] py-2 border-b border-[#A3B1C6]/20 hover:text-[#000000]"
+          >
+            Services
+          </Link>
+          <Link
+            href="/about"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-[#6B7280] py-2 border-b border-[#A3B1C6]/20 hover:text-[#000000]"
+          >
+            About Us
+          </Link>
+          <Link
+            href="/vendor"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-[#6B7280] py-2 border-b border-[#A3B1C6]/20 hover:text-[#000000]"
+          >
+            Business
+          </Link>
+          <Link
+            href="/support"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block text-base font-semibold text-[#6B7280] py-2 hover:text-[#000000]"
+          >
+            Support
+          </Link>
 
-          <nav className="flex flex-col gap-1">
-
-            {/* Home */}
+          <div className="pt-4 flex flex-col space-y-3">
             <Link
-              href="/"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-blue-600"
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="neu-btn w-full text-center py-3 text-sm font-bold text-[#3D4852]"
             >
-              Home
+              Login
             </Link>
-
-            {/* CHANGED: Services */}
             <Link
-              href="/services"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-blue-600"
+              href="/register"
+              onClick={() => setMobileMenuOpen(false)}
+              className="neu-btn neu-btn-primary w-full text-center py-3 text-sm font-bold"
             >
-              Services
+              Book a Ride
             </Link>
-
-            {/* CHANGED: For Business */}
-            <Link
-              href="/business"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-blue-600"
-            >
-              For Business
-            </Link>
-
-            {/* CHANGED: About */}
-            <Link
-              href="/about"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-blue-600"
-            >
-              About
-            </Link>
-
-            {/* CHANGED: Support */}
-            <Link
-              href="/support"
-              onClick={closeMenu}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-blue-600"
-            >
-              Support
-            </Link>
-
-            {/* ACTIONS */}
-            <div className="mt-3 border-t border-slate-100 pt-3">
-
-              <Link
-                href="/login"
-                onClick={closeMenu}
-                className="block rounded-lg px-3 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-              >
-                Login
-              </Link>
-
-              <Link
-                href="/provider/register"
-                onClick={closeMenu}
-                className="mt-2 block rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
-              >
-                Become a Provider
-              </Link>
-
-            </div>
-          </nav>
+          </div>
         </div>
       )}
     </header>

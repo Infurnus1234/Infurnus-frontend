@@ -141,161 +141,50 @@ export default function ProviderDashboard() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* HEADER */}
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="text-xl font-extrabold tracking-tight">
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-
-          <div className="hidden items-center gap-4 md:flex">
-            <button className="relative rounded-xl p-2 text-slate-600 hover:bg-slate-100">
-              <Bell size={20} />
-
-              <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500" />
-            </button>
-
-            <div className="flex items-center gap-3 border-l border-slate-200 pl-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
-                VR
-              </div>
-
-              <div>
-                <p className="text-sm font-semibold text-slate-950">
-                  Vikram Rao
-                </p>
-
-                <p className="text-xs text-slate-500">
-                  Driver + Fleet Owner
-                </p>
-              </div>
-            </div>
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-7xl space-y-6">
+        
+        {/* Header Card */}
+        <div className="neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+              PARTNER & FLEET COMMAND CENTER
+            </span>
+            <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3D4852] mt-2">
+              Welcome back, Vikram Rao 👋
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
+              Manage live trips, vehicle fleets, assigned drivers, and financial payouts.
+            </p>
           </div>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="rounded-xl p-2 text-slate-700 md:hidden"
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-
-        {/* MOBILE MENU */}
-        {menuOpen && (
-          <div className="border-t border-slate-200 bg-white p-4 md:hidden">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-700">
-                VR
-              </div>
-
-              <div>
-                <p className="font-semibold text-slate-950">
-                  Vikram Rao
-                </p>
-
-                <p className="text-xs text-slate-500">
-                  Driver + Fleet Owner
-                </p>
-              </div>
-            </div>
-
-            <div className="grid gap-2">
-              <MobileNavLink
-                href="/provider"
-                label="Dashboard"
-                onClick={() => setMenuOpen(false)}
-              />
-
-              <MobileNavLink
-                href="/provider/trips"
-                label="My Trips"
-                onClick={() => setMenuOpen(false)}
-              />
-
-              <MobileNavLink
-                href="/provider/earnings"
-                label="Earnings"
-                onClick={() => setMenuOpen(false)}
-              />
-
-              <MobileNavLink
-                href="/provider/vehicles"
-                label="Vehicles"
-                onClick={() => setMenuOpen(false)}
-              />
-
-              <MobileNavLink
-                href="/provider/drivers"
-                label="Drivers"
-                onClick={() => setMenuOpen(false)}
-              />
-
-              <MobileNavLink
-                href="/provider/documents"
-                label="Documents & KYC"
-                onClick={() => setMenuOpen(false)}
-              />
-
-              <MobileNavLink
-                href="/provider/settings"
-                label="Settings"
-                onClick={() => setMenuOpen(false)}
-              />
-            </div>
-          </div>
-        )}
-      </header>
-
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        {/* DESKTOP PROVIDER NAVIGATION */}
-        <nav className="mb-6 hidden rounded-2xl border border-slate-200 bg-white p-2 shadow-sm md:block">
-          <div className="flex gap-2 overflow-x-auto">
-            <ProviderNavLink
-              href="/provider"
-              icon={Navigation}
-              label="Dashboard"
-              active
-            />
-
-            <ProviderNavLink
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
               href="/provider/trips"
-              icon={Navigation}
-              label="Trips"
-            />
-
-            <ProviderNavLink
-              href="/provider/earnings"
-              icon={Wallet}
-              label="Earnings"
-            />
-
-            <ProviderNavLink
+              className="neu-btn px-4 py-2.5 text-xs font-bold"
+            >
+              Trips History
+            </Link>
+            <Link
               href="/provider/vehicles"
-              icon={Car}
-              label="Vehicles"
-            />
-
-            <ProviderNavLink
+              className="neu-btn px-4 py-2.5 text-xs font-bold"
+            >
+              Vehicles
+            </Link>
+            <Link
               href="/provider/drivers"
-              icon={Users}
-              label="Drivers"
-            />
-
-            <ProviderNavLink
-              href="/provider/documents"
-              icon={FileText}
-              label="Documents"
-            />
-
-            <ProviderNavLink
-              href="/provider/settings"
-              icon={Settings}
-              label="Settings"
-            />
+              className="neu-btn px-4 py-2.5 text-xs font-bold"
+            >
+              Drivers
+            </Link>
+            <Link
+              href="/provider/earnings"
+              className="neu-btn neu-btn-primary px-4 py-2.5 text-xs font-bold"
+            >
+              Earnings ₹84,250
+            </Link>
           </div>
-        </nav>
+        </div>
 
         {/* WELCOME */}
         <section className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
@@ -1238,25 +1127,20 @@ function QuickAction({
   return (
     <Link
       href={href}
-      className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-200 hover:shadow-sm"
+      className="neu-inset-sm hover:neu-inset p-4 rounded-2xl flex items-center gap-4 transition-all"
     >
-      <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-        <Icon size={21} />
+      <div className="neu-inset-deep p-3 rounded-xl text-[#000000]">
+        <Icon size={20} />
       </div>
 
-      <div className="min-w-0">
-        <p className="font-semibold text-slate-950">
-          {title}
-        </p>
-
-        <p className="mt-1 text-xs text-slate-500">
-          {description}
-        </p>
+      <div className="min-w-0 flex-1">
+        <p className="font-bold text-xs text-[#3D4852]">{title}</p>
+        <p className="text-[11px] text-[#6B7280]">{description}</p>
       </div>
 
       <ChevronRight
-        size={17}
-        className="ml-auto text-slate-300 transition group-hover:text-blue-600"
+        size={16}
+        className="text-[#6B7280]"
       />
     </Link>
   );
@@ -1270,8 +1154,8 @@ function StatusBadge({
   text: string;
 }) {
   return (
-    <span className="flex items-center gap-2 rounded-lg bg-green-50 px-3 py-2 text-xs font-semibold text-green-700">
-      <Icon size={15} />
+    <span className="neu-inset-sm px-3.5 py-1.5 rounded-full text-xs font-bold text-[#000000] inline-flex items-center gap-2">
+      <Icon size={14} />
       {text}
     </span>
   );

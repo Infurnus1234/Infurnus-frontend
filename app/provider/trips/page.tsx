@@ -243,58 +243,43 @@ export default function ProviderTripsPage() {
   ).length;
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      {/* HEADER */}
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex h-16 max-w-6xl items-center px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-[#E0E5EC] py-8 px-4 sm:px-6 lg:px-8 text-[#3D4852]">
+      <div className="mx-auto max-w-6xl space-y-6">
+        {/* HEADER / TITLE */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 neu-extruded rounded-[36px] bg-[#E0E5EC] p-6 sm:p-8">
+          <div className="space-y-1">
+            <span className="neu-inset-sm px-3.5 py-1 rounded-full text-xs font-bold text-[#000000]">
+              PROVIDER DASHBOARD
+            </span>
+            <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3D4852]">
+              Trip & Dispatch History
+            </h1>
+            <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
+              View, filter, and track all your active and past provider trips.
+            </p>
+          </div>
+
           <Link
             href="/provider"
-            className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-950"
+            className="neu-btn px-4 py-3 text-xs font-bold flex items-center gap-2 w-fit"
           >
-            <ArrowLeft size={18} />
-            Dashboard
+            <ArrowLeft size={16} />
+            <span>Back to Dashboard</span>
           </Link>
-
-          <Link
-            href="/"
-            className="ml-auto text-xl font-extrabold tracking-tight sm:absolute sm:left-1/2 sm:-translate-x-1/2"
-          >
-            <span className="text-slate-950">INFUR</span>
-            <span className="text-blue-600">NUS</span>
-          </Link>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 lg:px-8">
-        {/* TITLE */}
-        <div>
-          <p className="text-sm font-semibold text-blue-600">
-            PROVIDER
-          </p>
-
-          <h1 className="mt-1 text-2xl font-bold text-slate-950">
-            My Trips
-          </h1>
-
-          <p className="mt-1 text-sm text-slate-500">
-            View and manage your trip history.
-          </p>
         </div>
 
         {/* SUMMARY */}
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-3">
           <SummaryCard
             title="Total Trips"
             value={String(totalTrips)}
             icon={Navigation}
           />
-
           <SummaryCard
             title="Completed"
             value={String(completedCount)}
             icon={CheckCircle2}
           />
-
           <SummaryCard
             title="Cancelled"
             value={String(cancelledCount)}
@@ -303,8 +288,8 @@ export default function ProviderTripsPage() {
         </div>
 
         {/* FILTERS */}
-        <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-4">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <section className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
               {[
                 "All",
@@ -315,10 +300,10 @@ export default function ProviderTripsPage() {
                 <button
                   key={item}
                   onClick={() => setFilter(item)}
-                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                     filter === item
-                      ? "bg-blue-600 text-white"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      ? "neu-inset text-[#000000] border border-[#000000]/20"
+                      : "neu-btn text-[#3D4852]"
                   }`}
                 >
                   {item}
@@ -329,32 +314,29 @@ export default function ProviderTripsPage() {
             <div className="relative w-full lg:w-72">
               <Search
                 size={17}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6B7280]"
               />
-
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search trips..."
-                className="w-full rounded-xl border border-slate-200 py-2.5 pl-9 pr-4 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                className="neu-input w-full pl-11 pr-4 py-2.5 rounded-2xl text-xs text-[#3D4852] outline-none placeholder:text-[#9CA3AF]"
               />
             </div>
           </div>
         </section>
 
-        {/* TRIPS */}
-        <section className="mt-5 space-y-4">
+        {/* TRIPS LIST */}
+        <section className="space-y-4">
           {filteredTrips.length === 0 ? (
-            <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-400">
-                <Navigation size={21} />
+            <div className="neu-extruded rounded-[32px] bg-[#E0E5EC] p-10 text-center space-y-3">
+              <div className="neu-inset-deep inline-flex p-4 rounded-2xl text-[#000000]">
+                <Navigation size={28} />
               </div>
-
-              <p className="mt-4 font-semibold text-slate-700">
+              <p className="font-bold text-[#3D4852]">
                 No trips found
               </p>
-
-              <p className="mt-1 text-sm text-slate-400">
+              <p className="text-xs text-[#6B7280]">
                 {trips.length === 0
                   ? "Completed and active provider trips will appear here."
                   : "Try another filter or search term."}
@@ -364,111 +346,87 @@ export default function ProviderTripsPage() {
             filteredTrips.map((trip) => (
               <div
                 key={trip.id}
-                className="rounded-2xl border border-slate-200 bg-white p-5"
+                className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-4"
               >
-                <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="flex gap-4">
-                    <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                      <Navigation size={20} />
+                <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                  <div className="flex items-start gap-4">
+                    <div className="neu-inset-deep p-3 rounded-2xl text-[#000000] flex-shrink-0">
+                      <Navigation size={22} />
                     </div>
 
                     <div>
                       <div className="flex flex-wrap items-center gap-2">
-                        <p className="font-bold text-slate-950">
+                        <h3 className="font-bold text-base text-[#3D4852]">
                           {trip.service}
-                        </p>
-
+                        </h3>
                         <Status status={trip.status} />
                       </div>
 
-                      <p className="mt-1 text-sm text-slate-500">
+                      <p className="text-xs text-[#6B7280] font-mono mt-1">
                         Trip ID: {trip.id}
                       </p>
 
-                      <p className="mt-2 text-sm font-semibold text-slate-800">
-                        {trip.customer}
+                      <p className="text-xs font-bold text-[#3D4852] mt-1">
+                        Customer: {trip.customer}
                       </p>
 
-                      {/* CHANGED: Show vehicle when available */}
                       {trip.vehicleType && (
-                        <p className="mt-1 text-xs text-slate-400">
+                        <p className="text-[11px] text-[#6B7280]">
                           Vehicle: {trip.vehicleType}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-6 text-sm">
+                  <div className="flex flex-wrap gap-6 text-xs">
                     <div>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-[11px] font-bold text-[#6B7280] uppercase">
                         Date & Time
                       </p>
-
-                      <p className="mt-1 font-medium text-slate-700">
+                      <p className="font-bold text-[#3D4852] mt-0.5">
                         {trip.date}
                       </p>
-
-                      <p className="text-xs text-slate-500">
+                      <p className="text-[#6B7280]">
                         {trip.time}
                       </p>
                     </div>
 
                     <div>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-[11px] font-bold text-[#6B7280] uppercase">
                         Earnings
                       </p>
-
-                      <p className="mt-1 font-bold text-slate-950">
+                      <p className="font-extrabold text-[#3D4852] text-sm mt-0.5">
                         {trip.amount}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-5 grid gap-3 rounded-xl bg-slate-50 p-4 sm:grid-cols-2">
-                  <div className="flex gap-2">
-                    <MapPin
-                      size={17}
-                      className="mt-0.5 flex-shrink-0 text-blue-600"
-                    />
-
+                <div className="grid gap-3 neu-inset-deep p-4 rounded-2xl sm:grid-cols-2">
+                  <div className="flex items-start gap-2">
+                    <MapPin size={16} className="text-[#000000] mt-0.5" />
                     <div>
-                      <p className="text-xs text-slate-400">
-                        Pickup
-                      </p>
-
-                      <p className="text-sm font-medium text-slate-700">
-                        {trip.pickup}
-                      </p>
+                      <p className="text-[11px] font-bold text-[#6B7280] uppercase">Pickup Location</p>
+                      <p className="text-xs font-semibold text-[#3D4852]">{trip.pickup}</p>
                     </div>
                   </div>
 
-                  <div className="flex gap-2">
-                    <MapPin
-                      size={17}
-                      className="mt-0.5 flex-shrink-0 text-green-600"
-                    />
-
+                  <div className="flex items-start gap-2">
+                    <MapPin size={16} className="text-[#000000] mt-0.5" />
                     <div>
-                      <p className="text-xs text-slate-400">
-                        Destination
-                      </p>
-
-                      <p className="text-sm font-medium text-slate-700">
-                        {trip.destination}
-                      </p>
+                      <p className="text-[11px] font-bold text-[#6B7280] uppercase">Destination</p>
+                      <p className="text-xs font-semibold text-[#3D4852]">{trip.destination}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* CHANGED: Active trips can be opened directly */}
                 {trip.status === "In Progress" && (
-                  <div className="mt-4">
+                  <div className="pt-2">
                     <Link
                       href="/provider/trips/active"
-                      className="inline-flex items-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+                      className="neu-btn neu-btn-primary px-5 py-2.5 text-xs font-bold inline-flex items-center gap-2"
                     >
-                      Open Active Trip
+                      <span>Open Active Navigation</span>
                     </Link>
                   </div>
                 )}
@@ -491,18 +449,16 @@ function SummaryCard({
   icon: React.ElementType;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+    <div className="neu-extruded rounded-[28px] bg-[#E0E5EC] p-6 space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-slate-500">
+        <p className="text-xs font-bold uppercase tracking-wider text-[#6B7280]">
           {title}
         </p>
-
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-          <Icon size={18} />
+        <div className="neu-inset-deep p-2.5 rounded-xl text-[#000000]">
+          <Icon size={20} />
         </div>
       </div>
-
-      <p className="mt-3 text-2xl font-bold text-slate-950">
+      <p className="text-2xl font-extrabold text-[#3D4852]">
         {value}
       </p>
     </div>
@@ -512,7 +468,7 @@ function SummaryCard({
 function Status({ status }: { status: string }) {
   if (status === "Completed") {
     return (
-      <span className="flex items-center gap-1 rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-700">
+      <span className="neu-inset-sm px-3 py-1 rounded-full text-[11px] font-bold text-[#000000] inline-flex items-center gap-1">
         <CheckCircle2 size={13} />
         Completed
       </span>
@@ -521,7 +477,7 @@ function Status({ status }: { status: string }) {
 
   if (status === "In Progress") {
     return (
-      <span className="flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">
+      <span className="neu-inset-sm px-3 py-1 rounded-full text-[11px] font-bold text-[#000000] inline-flex items-center gap-1">
         <Clock size={13} />
         In Progress
       </span>
@@ -529,7 +485,7 @@ function Status({ status }: { status: string }) {
   }
 
   return (
-    <span className="flex items-center gap-1 rounded-full bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-600">
+    <span className="neu-inset-sm px-3 py-1 rounded-full text-[11px] font-bold text-[#6B7280] inline-flex items-center gap-1">
       <XCircle size={13} />
       Cancelled
     </span>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const userTypes = [
@@ -34,26 +35,32 @@ export default function RegisterPage() {
   const [userType, setUserType] = useState("customer");
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      <div className="mx-auto max-w-7xl px-6 py-10">
+    <main className="min-h-screen bg-[#E0E5EC] py-10">
+      <div className="mx-auto max-w-7xl px-6">
 
         {/* Header */}
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-600 text-xl font-bold text-grey-300">
-              I
+            <div className="neu-inset-deep flex h-12 w-12 items-center justify-center rounded-2xl overflow-hidden p-1">
+              <Image
+                src="/logo.png"
+                alt="Infurnus Logo"
+                width={44}
+                height={44}
+                className="h-full w-full object-cover rounded-xl"
+              />
             </div>
 
-            <span className="text-xl font-bold tracking-wide text-slate-900">
+            <span className="font-display text-xl font-extrabold tracking-tight text-[#3D4852]">
               INFURNUS
             </span>
           </Link>
 
-          <p className="hidden text-sm text-slate-500 sm:block">
+          <p className="hidden font-sans text-sm font-medium text-[#6B7280] sm:block">
             Already have an account?{" "}
             <Link
               href="/login"
-              className="font-semibold text-blue-600 hover:text-blue-700"
+              className="font-bold text-[#000000] hover:underline"
             >
               Login
             </Link>
@@ -64,21 +71,21 @@ export default function RegisterPage() {
         <div className="mx-auto mt-12 max-w-4xl">
 
           <div className="text-center">
-            <span className="inline-block rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
-              Join Infurnus
+            <span className="inline-block neu-inset-sm px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#000000] rounded-full">
+              JOIN INFURNUS
             </span>
 
-            <h1 className="mt-5 text-3xl font-bold text-slate-900 md:text-4xl">
+            <h1 className="font-display mt-5 text-3xl font-extrabold text-[#3D4852] md:text-4xl">
               Create your account
             </h1>
 
-            <p className="mt-3 text-slate-500">
+            <p className="font-sans mt-3 text-base text-[#6B7280]">
               Choose how you want to use Infurnus.
             </p>
           </div>
 
-          {/* Account Type */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Account Type Selector */}
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {userTypes.map((type) => {
               const active = userType === type.id;
 
@@ -87,23 +94,23 @@ export default function RegisterPage() {
                   key={type.id}
                   type="button"
                   onClick={() => setUserType(type.id)}
-                  className={`rounded-2xl border p-5 text-left transition ${
+                  className={`rounded-[28px] p-6 text-left transition-all duration-300 ${
                     active
-                      ? "border-blue-600 bg-blue-50 ring-2 ring-blue-100"
-                      : "border-slate-200 bg-white hover:border-blue-300"
+                      ? "neu-inset-deep bg-[#E0E5EC]"
+                      : "neu-extruded neu-extruded-hover bg-[#E0E5EC]"
                   }`}
                 >
                   <div className="text-3xl">{type.icon}</div>
 
                   <h3
-                    className={`mt-4 font-bold ${
-                      active ? "text-blue-700" : "text-slate-900"
+                    className={`font-display mt-4 text-lg font-bold ${
+                      active ? "text-[#000000]" : "text-[#3D4852]"
                     }`}
                   >
                     {type.title}
                   </h3>
 
-                  <p className="mt-2 text-sm leading-5 text-slate-500">
+                  <p className="font-sans mt-2 text-xs leading-relaxed text-[#6B7280]">
                     {type.description}
                   </p>
                 </button>
@@ -112,26 +119,26 @@ export default function RegisterPage() {
           </div>
 
           {/* Registration Form */}
-          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="mt-10 neu-extruded rounded-[36px] bg-[#E0E5EC] p-8 md:p-12">
 
-            <div className="mb-7">
-              <h2 className="text-xl font-bold text-slate-900">
+            <div className="mb-8">
+              <h2 className="font-display text-2xl font-extrabold text-[#3D4852]">
                 {userTypes.find((type) => type.id === userType)?.title}{" "}
                 Registration
               </h2>
 
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="font-sans mt-1 text-sm text-[#6B7280]">
                 Enter your details to create your Infurnus account.
               </p>
             </div>
 
-            <form className="grid gap-5 md:grid-cols-2">
+            <form className="grid gap-6 md:grid-cols-2">
 
               {/* Full Name */}
               <div>
                 <label
                   htmlFor="name"
-                  className="text-sm font-semibold text-slate-700"
+                  className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                 >
                   Full Name
                 </label>
@@ -140,7 +147,7 @@ export default function RegisterPage() {
                   id="name"
                   type="text"
                   placeholder="Enter your full name"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                  className="neu-input mt-2 w-full text-sm font-sans"
                 />
               </div>
 
@@ -148,7 +155,7 @@ export default function RegisterPage() {
               <div>
                 <label
                   htmlFor="mobile"
-                  className="text-sm font-semibold text-slate-700"
+                  className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                 >
                   Mobile Number
                 </label>
@@ -157,7 +164,7 @@ export default function RegisterPage() {
                   id="mobile"
                   type="tel"
                   placeholder="+91 XXXXX XXXXX"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                  className="neu-input mt-2 w-full text-sm font-sans"
                 />
               </div>
 
@@ -165,7 +172,7 @@ export default function RegisterPage() {
               <div>
                 <label
                   htmlFor="email"
-                  className="text-sm font-semibold text-slate-700"
+                  className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                 >
                   Email Address
                 </label>
@@ -174,7 +181,7 @@ export default function RegisterPage() {
                   id="email"
                   type="email"
                   placeholder="you@example.com"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                  className="neu-input mt-2 w-full text-sm font-sans"
                 />
               </div>
 
@@ -182,7 +189,7 @@ export default function RegisterPage() {
               <div>
                 <label
                   htmlFor="password"
-                  className="text-sm font-semibold text-slate-700"
+                  className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                 >
                   Password
                 </label>
@@ -191,7 +198,7 @@ export default function RegisterPage() {
                   id="password"
                   type="password"
                   placeholder="Create a strong password"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                  className="neu-input mt-2 w-full text-sm font-sans"
                 />
               </div>
 
@@ -199,7 +206,7 @@ export default function RegisterPage() {
               <div>
                 <label
                   htmlFor="confirmPassword"
-                  className="text-sm font-semibold text-slate-700"
+                  className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                 >
                   Confirm Password
                 </label>
@@ -208,7 +215,7 @@ export default function RegisterPage() {
                   id="confirmPassword"
                   type="password"
                   placeholder="Confirm your password"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                  className="neu-input mt-2 w-full text-sm font-sans"
                 />
               </div>
 
@@ -216,7 +223,7 @@ export default function RegisterPage() {
               <div>
                 <label
                   htmlFor="city"
-                  className="text-sm font-semibold text-slate-700"
+                  className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                 >
                   City
                 </label>
@@ -225,7 +232,7 @@ export default function RegisterPage() {
                   id="city"
                   type="text"
                   placeholder="Enter your city"
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                  className="neu-input mt-2 w-full text-sm font-sans"
                 />
               </div>
 
@@ -235,7 +242,7 @@ export default function RegisterPage() {
                   <div>
                     <label
                       htmlFor="license"
-                      className="text-sm font-semibold text-slate-700"
+                      className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                     >
                       Driving License Number
                     </label>
@@ -244,21 +251,21 @@ export default function RegisterPage() {
                       id="license"
                       type="text"
                       placeholder="Enter license number"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+                      className="neu-input mt-2 w-full text-sm font-sans"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="vehicle"
-                      className="text-sm font-semibold text-slate-700"
+                      className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                     >
                       Vehicle Type
                     </label>
 
                     <select
                       id="vehicle"
-                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 outline-none focus:border-blue-600"
+                      className="neu-input mt-2 w-full text-sm font-sans cursor-pointer"
                     >
                       <option>Select vehicle type</option>
                       <option>Bike</option>
@@ -277,7 +284,7 @@ export default function RegisterPage() {
                   <div>
                     <label
                       htmlFor="fleet"
-                      className="text-sm font-semibold text-slate-700"
+                      className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                     >
                       Fleet Size
                     </label>
@@ -286,21 +293,21 @@ export default function RegisterPage() {
                       id="fleet"
                       type="number"
                       placeholder="Number of vehicles"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none focus:border-blue-600"
+                      className="neu-input mt-2 w-full text-sm font-sans"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="vehicleCategory"
-                      className="text-sm font-semibold text-slate-700"
+                      className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                     >
                       Vehicle Category
                     </label>
 
                     <select
                       id="vehicleCategory"
-                      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 outline-none focus:border-blue-600"
+                      className="neu-input mt-2 w-full text-sm font-sans cursor-pointer"
                     >
                       <option>Select category</option>
                       <option>Cars</option>
@@ -318,7 +325,7 @@ export default function RegisterPage() {
                   <div>
                     <label
                       htmlFor="businessName"
-                      className="text-sm font-semibold text-slate-700"
+                      className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                     >
                       Business Name
                     </label>
@@ -327,14 +334,14 @@ export default function RegisterPage() {
                       id="businessName"
                       type="text"
                       placeholder="Enter business name"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none focus:border-blue-600"
+                      className="neu-input mt-2 w-full text-sm font-sans"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="gst"
-                      className="text-sm font-semibold text-slate-700"
+                      className="font-display text-xs font-bold uppercase tracking-wider text-[#6B7280]"
                     >
                       GST Number
                     </label>
@@ -343,7 +350,7 @@ export default function RegisterPage() {
                       id="gst"
                       type="text"
                       placeholder="Enter GST number"
-                      className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3.5 outline-none focus:border-blue-600"
+                      className="neu-input mt-2 w-full text-sm font-sans"
                     />
                   </div>
                 </>
@@ -351,24 +358,24 @@ export default function RegisterPage() {
 
               {/* Terms */}
               <div className="md:col-span-2">
-                <label className="flex items-start gap-3 text-sm text-slate-500">
+                <label className="flex items-center gap-3 text-xs font-medium text-[#6B7280] font-sans">
                   <input
                     type="checkbox"
-                    className="mt-1 h-4 w-4 rounded border-slate-300"
+                    className="h-4 w-4 accent-[#000000] rounded"
                   />
 
                   <span>
                     I agree to the{" "}
                     <Link
                       href="/terms"
-                      className="font-medium text-blue-600"
+                      className="font-bold text-[#000000] hover:underline"
                     >
                       Terms & Conditions
                     </Link>{" "}
                     and{" "}
                     <Link
                       href="/privacy"
-                      className="font-medium text-blue-600"
+                      className="font-bold text-[#000000] hover:underline"
                     >
                       Privacy Policy
                     </Link>
@@ -378,10 +385,10 @@ export default function RegisterPage() {
               </div>
 
               {/* Submit */}
-              <div className="md:col-span-2">
+              <div className="md:col-span-2 mt-2">
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-blue-600 py-4 font-semibold text-white transition hover:bg-blue-700"
+                  className="neu-btn neu-btn-primary w-full py-4 text-sm font-bold"
                 >
                   Create {userTypes.find((type) => type.id === userType)?.title}{" "}
                   Account
@@ -390,11 +397,11 @@ export default function RegisterPage() {
             </form>
 
             {/* Mobile Login */}
-            <p className="mt-7 text-center text-sm text-slate-500 sm:hidden">
+            <p className="mt-6 text-center text-xs font-sans text-[#6B7280] sm:hidden">
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="font-semibold text-blue-600"
+                className="font-bold text-[#000000] hover:underline"
               >
                 Login
               </Link>

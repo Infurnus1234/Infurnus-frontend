@@ -1110,7 +1110,7 @@ export default function PrivacyPolicyPage() {
               <p>INFURNUS services are intended for individuals legally eligible to use the relevant transportation, logistics, and vehicle-provider services.</p>
               <p>Individuals under 18 years of age must not independently create driver, fleet owner, or other accounts requiring legal contractual eligibility.</p>
               <p>
-                <strong>Minimum age for independent customer account registration:</strong> 18 years.
+                <strong>Minimum age for customer account registration:</strong> 13 years and above. Customers aged between 13 and 17 years may register and use the INFURNUS User App only with verifiable parental or legal guardian consent and oversight, in accordance with applicable laws including the Digital Personal Data Protection Act, 2023, the Digital Personal Data Protection Rules, 2025, and relevant contractual eligibility requirements. Customers aged 13–17 years are not treated as adults and may not independently enter into binding contracts without parental or guardian authorization. Driver, fleet owner, and driver-cum-fleet owner accounts strictly require a minimum age of 18 years.
               </p>
               <p>We do not knowingly collect personal information from children in violation of applicable laws.</p>
               <p>Where applicable law requires parental or guardian consent for processing a child&apos;s personal information, INFURNUS will implement the relevant requirements.</p>

@@ -172,6 +172,13 @@ export default function Footer() {
             </Link>
 
             <Link
+              href="/delete-account"
+              className="transition hover:text-white"
+            >
+              Delete Account
+            </Link>
+
+            <Link
               href="/terms"
               className="transition hover:text-white"
             >

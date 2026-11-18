@@ -10,9 +10,9 @@ import {
   UserRound,
   Upload,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 
-export default function ProviderRegisterDetailsPage() {
+function ProviderRegisterDetailsContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type") || "driver";
 
@@ -390,7 +390,7 @@ export default function ProviderRegisterDetailsPage() {
 
               <span className="text-sm leading-6 text-slate-600">
                 I confirm that the information and documents provided by me
-                are accurate and genuine. I agree to Infurnus's{" "}
+                are accurate and genuine. I agree to Infurnus&apos;s{" "}
                 <span className="font-semibold text-blue-600">
                   Terms & Conditions
                 </span>{" "}
@@ -422,6 +422,14 @@ export default function ProviderRegisterDetailsPage() {
   );
 }
 
+export default function ProviderRegisterDetailsPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-slate-50" />}>
+      <ProviderRegisterDetailsContent />
+    </Suspense>
+  );
+}
+
 /* ---------------- Components ---------------- */
 
 function Input({
@@ -432,7 +440,7 @@ function Input({
   min,
 }: {
   label: string;
-  placeholder: string;
+  placeholder?: string;
   type?: string;
   required?: boolean;
   min?: string;

@@ -107,8 +107,26 @@ export default function Footer() {
         <div className="mt-12 pt-8 flex flex-col gap-4 border-t border-[#A3B1C6]/30 text-sm font-medium text-[#6B7280] md:flex-row md:items-center md:justify-between font-sans">
           <p>© {new Date().getFullYear()} Infurnus. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="transition hover:text-[#000000]">Privacy Policy</Link>
-            <Link href="/terms" className="transition hover:text-[#000000]">Terms & Conditions</Link>
+            <Link
+              href="/privacy"
+              className="transition hover:text-white"
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              href="/delete-account"
+              className="transition hover:text-white"
+            >
+              Delete Account
+            </Link>
+
+            <Link
+              href="/terms"
+              className="transition hover:text-white"
+            >
+              Terms & Conditions
+            </Link>
           </div>
         </div>
       </div>
